@@ -25,8 +25,11 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 
 class RightCircleToSemiView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    override fun onDraw(canvas : Canvas) {
+        canvas.drawColor(Color.CYAN)
+        canvas.drawText("Hello World", canvas.width.toFloat() / 2, canvas.height.toFloat() / 2, paint)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
