@@ -63,22 +63,17 @@ fun Canvas.drawRCTSNode(i : Int, scale : Float, paint : Paint) {
 
 class RightCircleToSemiView(ctx : Context) : View(ctx) {
 
-    val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
-        val w : Float = width.toFloat()
-        val h : Float = height.toFloat()
-        canvas.drawColor(Color.CYAN)
-        paint.color = Color.WHITE
-        val text : String = "hello world"
-        paint.textSize = Math.min(w, h) / 6
-        canvas.drawText("Hello World", canvas.width.toFloat() / 2 - paint.measureText(text) / 2, canvas.height.toFloat() / 2 - paint.textSize / 2, paint)
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -171,50 +166,50 @@ class RightCircleToSemiView(ctx : Context) : View(ctx) {
             cb()
             return this
         }
+    }
 
-        data class RightCircleToSemi(var i : Int) {
+    data class RightCircleToSemi(var i : Int) {
 
-            private var curr : RCTSNode = RCTSNode(0)
-            private var dir : Int = 1
+        private var curr : RCTSNode = RCTSNode(0)
+        private var dir : Int = 1
 
-            fun draw(canvas : Canvas, paint : Paint) {
-                curr.draw(canvas, paint)
-            }
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
 
-            fun update(cb : (Float) -> Unit) {
-                curr.update {
-                    curr = curr.getNext(dir) {
-                        dir *= -1
-                    }
-                    cb(it)
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
                 }
-            }
-
-            fun startUpdating(cb : () -> Unit) {
-                curr.startUpdating(cb)
+                cb(it)
             }
         }
 
-        data class Renderer(var view : RightCircleToSemiView) {
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
+        }
+    }
 
-            private val animator : Animator = Animator(view)
-            private val rcts : RightCircleToSemi = RightCircleToSemi(0)
-            private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    data class Renderer(var view : RightCircleToSemiView) {
 
-            fun render(canvas : Canvas) {
-                canvas.drawColor(backColor)
-                rcts.draw(canvas, paint)
-                animator.animate {
-                    rcts.update {
-                        animator.stop()
-                    }
+        private val animator : Animator = Animator(view)
+        private val rcts : RightCircleToSemi = RightCircleToSemi(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rcts.draw(canvas, paint)
+            animator.animate {
+                rcts.update {
+                    animator.stop()
                 }
             }
+        }
 
-            fun handleTap() {
-                rcts.startUpdating {
-                    animator.start()
-                }
+        fun handleTap() {
+            rcts.startUpdating {
+                animator.start()
             }
         }
     }
