@@ -132,6 +132,47 @@ class RightCircleToSemiView(ctx : Context) : View(ctx) {
         }
     }
 
+    data class RCTSNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : RCTSNode? = null
+        private var prev : RCTSNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = RCTSNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawRCTSNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : RCTSNode {
+            var curr : RCTSNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
+
     companion object {
         fun create(activity : Activity) : RightCircleToSemiView {
             val view : RightCircleToSemiView = RightCircleToSemiView(activity)
