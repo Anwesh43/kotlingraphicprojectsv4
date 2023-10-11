@@ -40,4 +40,12 @@ class RightCircleToSemiView(ctx : Context) : View(ctx) {
         }
         return true
     }
+
+    companion object {
+        fun create(activity : Activity) : RightCircleToSemiView {
+            val view : RightCircleToSemiView = RightCircleToSemiView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
