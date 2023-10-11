@@ -28,8 +28,13 @@ class RightCircleToSemiView(ctx : Context) : View(ctx) {
     val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDraw(canvas : Canvas) {
+        val w : Float = width.toFloat()
+        val h : Float = height.toFloat()
         canvas.drawColor(Color.CYAN)
-        canvas.drawText("Hello World", canvas.width.toFloat() / 2, canvas.height.toFloat() / 2, paint)
+        paint.color = Color.WHITE
+        val text : String = "hello world"
+        paint.textSize = Math.min(w, h) / 6
+        canvas.drawText("Hello World", canvas.width.toFloat() / 2 - paint.measureText(text) / 2, canvas.height.toFloat() / 2 - paint.textSize / 2, paint)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
