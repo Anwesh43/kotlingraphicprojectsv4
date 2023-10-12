@@ -125,7 +125,7 @@ class BendLineToDownView(ctx : Context) : View(ctx) {
         private var prev : BLTDNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
