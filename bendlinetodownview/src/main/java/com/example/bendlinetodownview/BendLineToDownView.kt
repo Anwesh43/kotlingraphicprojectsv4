@@ -205,4 +205,13 @@ class BendLineToDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BendLineToDownView {
+            val view : BendLineToDownView = BendLineToDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
