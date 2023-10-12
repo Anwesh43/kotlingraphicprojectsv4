@@ -180,4 +180,27 @@ class BendLineToDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BendLineToDownView) {
+
+        private val bltd : BendLineToDown = BendLineToDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bltd.draw(canvas, paint)
+            animator.animate {
+                bltd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bltd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
