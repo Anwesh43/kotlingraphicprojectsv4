@@ -50,7 +50,7 @@ fun Canvas.drawParallelLineSemiCircle(scale : Float, w : Float, h : Float, paint
             paint
         )
         for (j in 0..1) {
-            drawXY(-size / 2 + size * j, 0f) {
+            drawXY(-size / 2 + paint.strokeWidth / 2 + (size - paint.strokeWidth) * j, 0f) {
                 drawLine(
                     0f,
                     (size) * (1 - dsc(j)) * (1 - j),
