@@ -16,3 +16,4 @@ rootProject.name = "android-kotlin-graphic-projectsv4"
 include ':app'
 include ':rightcircletosemiview'
 include ':bendlinetodownview'
+include ':parallellinesemicircleview'
