@@ -16,7 +16,7 @@ val colors : Array<String> = arrayOf(
     "#C51162",
     "#00C853"
 )
-val rot : Float = 90f
+val rot : Float = 180f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val parts : Int = 4
@@ -41,7 +41,7 @@ fun Canvas.drawSqFlyLineDown(scale : Float, w : Float, h : Float, paint : Paint)
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         rotate(rot * dsc(2))
         drawRect(RectF(-size / 2, 0f, size / 2, size * dsc(0)), paint)
         for (j in 0..1) {
