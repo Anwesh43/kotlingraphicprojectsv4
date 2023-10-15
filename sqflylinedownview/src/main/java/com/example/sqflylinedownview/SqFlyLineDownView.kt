@@ -213,4 +213,12 @@ class SqFlyLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SqFlyLineDownView {
+            val view : SqFlyLineDownView = SqFlyLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
