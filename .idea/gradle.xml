@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/bendlinetodownview" />
             <option value="$PROJECT_DIR$/parallellinesemicircleview" />
             <option value="$PROJECT_DIR$/rightcircletosemiview" />
+            <option value="$PROJECT_DIR$/sqflylinedownview" />
           </set>
         </option>
       </GradleProjectSettings>
