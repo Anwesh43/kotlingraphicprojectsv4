@@ -188,4 +188,27 @@ class SqFlyLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqFlyLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val sfld : SqFlyLineDown = SqFlyLineDown(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sfld.draw(canvas, paint)
+            animator.animate {
+                sfld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sfld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
