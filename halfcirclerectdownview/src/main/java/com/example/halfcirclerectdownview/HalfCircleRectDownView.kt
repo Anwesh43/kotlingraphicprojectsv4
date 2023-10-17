@@ -179,4 +179,27 @@ class HalfCircleRectDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfCircleRectDownView) {
+
+        private val hcrd : HalfCircleRectDown = HalfCircleRectDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hcrd.draw(canvas, paint)
+            animator.animate {
+                hcrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hcrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
