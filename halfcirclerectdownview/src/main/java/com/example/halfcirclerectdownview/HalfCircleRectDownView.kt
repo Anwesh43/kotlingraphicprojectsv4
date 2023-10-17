@@ -204,4 +204,13 @@ class HalfCircleRectDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : HalfCircleRectDownView {
+            val view : HalfCircleRectDownView = HalfCircleRectDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
