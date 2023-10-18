@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/barhalfsemicircleview" />
             <option value="$PROJECT_DIR$/bendlinetodownview" />
             <option value="$PROJECT_DIR$/halfcirclerectdownview" />
             <option value="$PROJECT_DIR$/parallellinesemicircleview" />
