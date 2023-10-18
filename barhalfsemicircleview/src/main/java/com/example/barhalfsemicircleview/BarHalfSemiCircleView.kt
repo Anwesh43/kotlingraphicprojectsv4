@@ -211,4 +211,13 @@ class BarHalfSemiCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarHalfSemiCircleView {
+            val view : BarHalfSemiCircleView = BarHalfSemiCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
