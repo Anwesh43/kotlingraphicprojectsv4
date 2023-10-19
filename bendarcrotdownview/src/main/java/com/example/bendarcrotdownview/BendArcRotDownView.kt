@@ -46,7 +46,7 @@ fun Canvas.drawBendArcRotDown(scale : Float, w : Float, h : Float, paint : Paint
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
-                drawArc(RectF(-size / 2, -size, size / 2, 0f), start - sweep * dsc(0), sweep * 2f * dsc(0), false, paint)
+                drawArc(RectF(-size / 2, -size, size / 2, 0f), start - sweep * dsc(j), sweep * 2f * dsc(j), false, paint)
             }
         }
     }
