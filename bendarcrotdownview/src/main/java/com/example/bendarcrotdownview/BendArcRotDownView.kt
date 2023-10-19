@@ -189,4 +189,27 @@ class BendArcRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BendArcRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val bard : BendArcRotDown = BendArcRotDown(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bard.draw(canvas, paint)
+            animator.animate {
+                bard.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bard.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
