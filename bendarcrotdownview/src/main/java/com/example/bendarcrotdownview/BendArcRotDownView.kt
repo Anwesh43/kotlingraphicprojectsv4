@@ -214,4 +214,13 @@ class BendArcRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BendArcRotDownView {
+            val view : BendArcRotDownView = BendArcRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
