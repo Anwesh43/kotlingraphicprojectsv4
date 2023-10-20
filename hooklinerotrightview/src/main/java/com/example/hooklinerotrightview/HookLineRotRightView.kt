@@ -192,4 +192,27 @@ class HookLineRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HookLineRotRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val hlrr : HookLineRotRight = HookLineRotRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hlrr.draw(canvas, paint)
+            animator.animate {
+                hlrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hlrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
