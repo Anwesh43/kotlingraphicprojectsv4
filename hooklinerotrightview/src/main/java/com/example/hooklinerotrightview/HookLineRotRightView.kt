@@ -217,4 +217,12 @@ class HookLineRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : HookLineRotRightView {
+            val view : HookLineRotRightView = HookLineRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
