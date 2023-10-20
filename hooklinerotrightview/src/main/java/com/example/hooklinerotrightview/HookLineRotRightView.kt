@@ -24,7 +24,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val scGap : Float = 0.04f / parts
-val rFactor : Float = 6f
+val rFactor : Float = 4.8f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -43,12 +43,13 @@ fun Canvas.drawHookLineRotRight(scale : Float, w : Float, h : Float, paint : Pai
         scale.divideScale(it, parts)
     }
     val r : Float = size / rFactor
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size + r) * dsc(3), h / 2) {
+        rotate(rot * dsc(2))
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2  * j)
                 drawLine(0f, 0f, 0f, size * dsc(0), paint)
-                drawXY(0f, -size) {
+                drawXY(0f, size) {
                     drawArc(RectF(0f, -r / 2, r, r / 2), sweep * (1 - dsc(1)), sweep * dsc(1), false, paint)
                 }
             }
@@ -142,7 +143,7 @@ class HookLineRotRightView(ctx : Context) : View(ctx) {
 
         fun addNeighbor() {
             if (i < colors.size - 1) {
-                next = HLRRNode(i)
+                next = HLRRNode(i + 1)
                 next?.prev = this
             }
         }
