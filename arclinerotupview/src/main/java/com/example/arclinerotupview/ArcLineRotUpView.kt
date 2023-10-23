@@ -187,4 +187,27 @@ class ArcLineRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcLineRotUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val alru : ArcLineRotUp = ArcLineRotUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            alru.draw(canvas, paint)
+            animator.animate {
+                alru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            alru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
