@@ -43,8 +43,10 @@ fun Canvas.drawLineRotSemiCircle(scale : Float, w : Float, h : Float, paint : Pa
     }
     val r : Float = size / 2
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
-        rotate(-rot * dsc(1))
-        drawLine(0f, 0f, 0f, size * dsc(0), paint)
+        drawXY(0f, 0f) {
+            rotate(-rot * dsc(1))
+            drawLine(0f, 0f, 0f, size * dsc(0), paint)
+        }
         for (j in 0..1) {
             val sc : Float = dsc(2)
             drawXY(r * j, 0f) {
