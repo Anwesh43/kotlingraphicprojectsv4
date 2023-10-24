@@ -190,4 +190,27 @@ class LineRotSemiCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotSemiCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrsc : LineRotSemiCircle = LineRotSemiCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrsc.draw(canvas, paint)
+            animator.animate {
+                lrsc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrsc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
