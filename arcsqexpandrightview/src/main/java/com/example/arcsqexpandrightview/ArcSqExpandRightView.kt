@@ -206,4 +206,13 @@ class ArcSqExpandRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcSqExpandRightView {
+            val view : ArcSqExpandRightView = ArcSqExpandRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
