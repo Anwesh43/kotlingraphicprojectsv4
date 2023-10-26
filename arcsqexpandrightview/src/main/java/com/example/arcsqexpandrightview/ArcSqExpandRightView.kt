@@ -40,7 +40,7 @@ fun Canvas.drawArcSqExpandRight(scale : Float, w : Float, h : Float, paint : Pai
         scale.divideScale(it, parts)
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
-        drawXY(0f, 0f) {
+        drawXY((size / 2) * dsc(1), 0f) {
             rotate(rot * dsc(1))
             drawArc(RectF(-size, -size, 0f, 0f), 0f, 180f * dsc(0), true, paint)
         }
