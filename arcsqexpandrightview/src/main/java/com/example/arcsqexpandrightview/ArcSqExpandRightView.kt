@@ -181,4 +181,27 @@ class ArcSqExpandRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcSqExpandRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val aser : ArcSqExpandRight = ArcSqExpandRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            aser.draw(canvas, paint)
+            animator.animate {
+                aser.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            aser.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
