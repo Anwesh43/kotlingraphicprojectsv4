@@ -216,4 +216,13 @@ class BiLineUpJoinLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineUpJoinLeftView {
+            val view : BiLineUpJoinLeftView = BiLineUpJoinLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
