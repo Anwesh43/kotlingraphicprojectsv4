@@ -187,4 +187,27 @@ class LineHalfArcDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineHalfArcDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lhad : LineHalfArcDown = LineHalfArcDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lhad.draw(canvas, paint)
+            animator.animate {
+                lhad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lhad.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
