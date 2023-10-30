@@ -44,7 +44,7 @@ fun Canvas.drawBiLineHalfArcDown(scale : Float, w : Float, h : Float, paint : Pa
                 scale(1f - 2 * j, 1f)
                 drawLine(0f, 0f, -size * dsc(0), 0f, paint)
                 drawXY(-size, 0f) {
-                    rotate(rot * dsc(2))
+                    rotate(-rot * dsc(2))
                     drawArc(RectF(-size / 4, -size / 2, size / 4, 0f), 90f, rot * dsc(1), true, paint)
                 }
             }
