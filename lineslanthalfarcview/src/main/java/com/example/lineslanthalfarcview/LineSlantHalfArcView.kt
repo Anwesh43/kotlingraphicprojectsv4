@@ -191,4 +191,27 @@ class LineSlantHalfArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSlantHalfArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val lsha : LineSlantHalfArc = LineSlantHalfArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsha.draw(canvas, paint)
+            animator.animate {
+                lsha.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsha.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
