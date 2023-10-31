@@ -28,3 +28,39 @@ val deg : Float = 180f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawLineSlantHalfArc(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    drawXY(w / 2, h / 2) {
+        drawArc(RectF(-size / 5, -size / 5, size / 5, size / 5), 0f, deg * dsc(2), true, paint)
+        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        for (j in 0..1) {
+            drawXY(0f, 0f) {
+                scale(1f - 2 * j, 1f)
+                drawXY(-size / 2, 0f) {
+                    rotate(rot * dsc(1))
+                    drawLine(0f, 0f, (size / 5) * Math.floor(dsc(1).toDouble()).toFloat(), 0f, paint)
+                }
+            }
+        }
+    }
+}
+
+fun Canvas.drawLSHANode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineSlantHalfArc(scale, w, h, paint)
+}
