@@ -183,4 +183,27 @@ class LineBisectRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBisectRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbr : LineBisectRot = LineBisectRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbr.draw(canvas, paint)
+            animator.animate {
+                lbr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
