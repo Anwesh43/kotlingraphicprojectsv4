@@ -54,6 +54,8 @@ fun Canvas.drawLBRNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = Color.parseColor(colors[i])
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.strokeCap = Paint.Cap.ROUND
     drawLineBisectRot(scale, w, h, paint)
 }
 
