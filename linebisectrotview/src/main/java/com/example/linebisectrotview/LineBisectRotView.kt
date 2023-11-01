@@ -208,4 +208,13 @@ class LineBisectRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBisectRotView {
+            val view : LineBisectRotView = LineBisectRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
