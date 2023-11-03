@@ -123,4 +123,45 @@ class LineBentLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LBLNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LBLNode? = null
+        private var prev : LBLNode? = null
+
+        init {
+           addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LBLNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBLNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBLNode {
+            var curr : LBLNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
