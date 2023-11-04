@@ -209,4 +209,13 @@ class LineBlockRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBlockRotUpView {
+            val view : LineBlockRotUpView = LineBlockRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
