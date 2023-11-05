@@ -215,4 +215,13 @@ class LineArcRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineArcRotUpView {
+            val view : LineArcRotUpView = LineArcRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
