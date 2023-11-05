@@ -190,4 +190,27 @@ class LineArcRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcRotUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val laru : LineArcRotUp = LineArcRotUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(Color.parseColor(backColor))
+            laru.draw(canvas, paint)
+            animator.animate {
+                laru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            laru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
