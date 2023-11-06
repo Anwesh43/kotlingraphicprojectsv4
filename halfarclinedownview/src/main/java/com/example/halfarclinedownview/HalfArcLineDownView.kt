@@ -12,7 +12,7 @@ import android.graphics.RectF
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 45f
+val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val colors : Array<String> = arrayOf(
     "#1A237E",
