@@ -55,6 +55,9 @@ fun Canvas.drawBHAJDNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBiHalfArcJoinDown(scale, w, h, paint)
 }
 
