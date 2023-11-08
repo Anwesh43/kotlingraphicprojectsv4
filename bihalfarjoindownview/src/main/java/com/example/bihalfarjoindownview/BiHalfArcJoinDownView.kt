@@ -184,4 +184,27 @@ class BiHalfArcJoinDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiHalfArcJoinDownView) {
+
+        private var animator : Animator = Animator(view)
+        private val bhajd : BiHalfArcJoinDown = BiHalfArcJoinDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bhajd.draw(canvas, paint)
+            animator.animate {
+                bhajd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bhajd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
