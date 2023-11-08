@@ -209,4 +209,13 @@ class BiHalfArcJoinDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiHalfArcJoinDownView {
+            val view : BiHalfArcJoinDownView = BiHalfArcJoinDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
