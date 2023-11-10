@@ -47,7 +47,7 @@ fun Canvas.drawSqUpSqLine(scale : Float, w : Float, h : Float, paint : Paint) {
                 drawRect(RectF(0f, -size * dsc(j * 2), size, 0f), paint)
             }
         }
-        drawLine(0f, 0f, size * dsc(2), -size * dsc(2), paint)
+        drawLine(0f, 0f, size * dsc(1), -size * dsc(1), paint)
     }
 }
 
@@ -131,7 +131,7 @@ class SqUpSqLineView(ctx : Context) : View(ctx) {
         private var prev : SUSLNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
