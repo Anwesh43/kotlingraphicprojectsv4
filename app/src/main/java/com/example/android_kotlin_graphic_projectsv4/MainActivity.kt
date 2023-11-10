@@ -2,8 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.halfarclineleftview.HalfArcLineLeftView
-
+import com.example.squpsqlineview.SqUpSqLineView
 
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        HalfArcLineLeftView.create(this)
+        SqUpSqLineView.create(this)
     }
 }
