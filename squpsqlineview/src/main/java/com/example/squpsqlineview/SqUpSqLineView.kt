@@ -211,4 +211,12 @@ class SqUpSqLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SqUpSqLineView {
+            val view : SqUpSqLineView = SqUpSqLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
