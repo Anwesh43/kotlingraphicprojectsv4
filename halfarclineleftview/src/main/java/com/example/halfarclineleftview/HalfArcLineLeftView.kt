@@ -161,7 +161,7 @@ class HalfArcLineLeftView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class Animaor(var view : View, var animated : Boolean = false) {
+    data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
             if (animated) {
@@ -185,6 +185,29 @@ class HalfArcLineLeftView(ctx : Context) : View(ctx) {
         fun stop() {
             if (animated) {
                 animated = false
+            }
+        }
+    }
+
+    data class Renderer(var view : HalfArcLineLeftView) {
+
+        private val hall : HalfArcLineLeft = HalfArcLineLeft(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hall.draw(canvas, paint)
+            animator.animate {
+                hall.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hall.startUpdating {
+                animator.start()
             }
         }
     }
