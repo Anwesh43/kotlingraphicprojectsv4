@@ -128,7 +128,7 @@ class TetrisBlockRotRightView(ctx : Context) : View(ctx) {
         private var prev : TBRRNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
