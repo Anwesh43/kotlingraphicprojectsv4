@@ -119,4 +119,45 @@ class TetrisBlockRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class TBRRNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : TBRRNode? = null
+        private var prev : TBRRNode? = null
+
+        init {
+
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = TBRRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawTBRRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : TBRRNode {
+            var curr : TBRRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
