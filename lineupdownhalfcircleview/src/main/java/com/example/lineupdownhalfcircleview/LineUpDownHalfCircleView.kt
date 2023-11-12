@@ -212,4 +212,13 @@ class LineUpDownHalfCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineUpDownHalfCircleView {
+            val view : LineUpDownHalfCircleView = LineUpDownHalfCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
