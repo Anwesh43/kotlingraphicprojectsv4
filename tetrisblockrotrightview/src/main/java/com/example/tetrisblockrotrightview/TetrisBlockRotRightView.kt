@@ -39,9 +39,9 @@ fun Canvas.drawTetrisBlockRotRight(scale : Float, w : Float, h : Float, paint : 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size / 2) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
-        drawXY(w * 0.5f * (1 - dsc(0)), 0f) {
+        drawXY((w * 0.5f + size / 2) * (1 - dsc(0)), 0f) {
             drawRect(RectF(-size / 2, 0f, size / 2, size / 2), paint)
         }
         drawXY(0f, -h * 0.5f * (1 - dsc(1))) {
