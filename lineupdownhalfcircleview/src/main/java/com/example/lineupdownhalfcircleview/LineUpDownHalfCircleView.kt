@@ -63,8 +63,10 @@ fun Canvas.drawLUDHCNode(i : Int, scale : Float, paint : Paint) {
 
 class LineUpDownHalfCircleView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
@@ -194,7 +196,7 @@ class LineUpDownHalfCircleView(ctx : Context) : View(ctx) {
         private val ludhc : LineUpDownHalfCircle = LineUpDownHalfCircle(0)
         private val animator : Animator = Animator(view)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             ludhc.draw(canvas, paint)
             animator.animate {
