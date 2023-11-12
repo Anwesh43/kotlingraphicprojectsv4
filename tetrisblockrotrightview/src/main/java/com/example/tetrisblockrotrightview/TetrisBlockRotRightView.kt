@@ -208,4 +208,13 @@ class TetrisBlockRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TetrisBlockRotRightView {
+            val view : TetrisBlockRotRightView = TetrisBlockRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
