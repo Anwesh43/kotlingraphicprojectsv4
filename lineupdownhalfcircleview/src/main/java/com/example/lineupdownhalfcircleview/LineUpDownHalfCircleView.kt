@@ -187,4 +187,27 @@ class LineUpDownHalfCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineUpDownHalfCircleView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val ludhc : LineUpDownHalfCircle = LineUpDownHalfCircle(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            ludhc.draw(canvas, paint)
+            animator.animate {
+                ludhc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ludhc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
