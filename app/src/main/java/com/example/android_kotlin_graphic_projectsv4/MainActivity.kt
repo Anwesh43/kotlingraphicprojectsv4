@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tetrisblockrotrightview.TetrisBlockRotRightView
+import com.example.linerothalfarcrightview.LineRotHalfArcView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        TetrisBlockRotRightView.create(this)
+        LineRotHalfArcView.create(this)
     }
 }
