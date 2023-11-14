@@ -43,7 +43,7 @@ fun Canvas.drawLineRotHalfArc(scale : Float, w : Float, h : Float, paint : Paint
     }
     drawXY(w / 2 - (w / 2) * dsc(4), h / 2) {
         rotate(deg * dsc(3))
-        drawLine(0f, 0f, -size * dsc(1), 0f, paint)
+        drawLine(-size, 0f, -size * (1 - dsc(0)), 0f, paint)
         drawXY(0f, 0f) {
             rotate(rot * dsc(2))
             drawArc(RectF(0f, -size / 2, size, size / 2), rot, rot * dsc(1), false, paint)
@@ -56,6 +56,8 @@ fun Canvas.drawLRHANode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineRotHalfArc(scale, w, h, paint)
 }
 
