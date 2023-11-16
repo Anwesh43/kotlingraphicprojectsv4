@@ -184,4 +184,27 @@ class RotLineExpandDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotLineExpandDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val rled : RotLineExpandDown = RotLineExpandDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rled.draw(canvas, paint)
+            animator.animate {
+                rled.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rled.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
