@@ -209,4 +209,12 @@ class RotLineExpandDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RotLineExpandDownView {
+            val view : RotLineExpandDownView = RotLineExpandDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
