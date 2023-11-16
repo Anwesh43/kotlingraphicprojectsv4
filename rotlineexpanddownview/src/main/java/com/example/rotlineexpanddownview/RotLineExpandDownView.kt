@@ -39,12 +39,12 @@ fun Canvas.drawRotLineExpandDown(scale : Float, w : Float, h : Float, paint : Pa
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
-        drawLine(-size * 0.5f, 0f, size * 0.5f, 0f, paint)
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
+        drawLine(-size * 0.5f * dsc(2), 0f, size * 0.5f * dsc(2), 0f, paint)
         for (j in 0..1) {
-            drawXY(-size * (1f - 2 * j) * 0.5f, 0f) {
+            drawXY(-size * (1f - 2 * j) * 0.5f * dsc(2), 0f) {
                 rotate(rot * dsc(1) * (1f - 2 * j))
-                drawLine(0f, 0f, 0f, size / 4, paint)
+                drawLine(0f, 0f, 0f, size * 0.5f * dsc(0), paint)
             }
         }
     }
