@@ -185,4 +185,27 @@ class LineBentHalfCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBentHalfCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbhc : LineBentHalfCircle = LineBentHalfCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbhc.draw(canvas, paint)
+            animator.animate {
+                lbhc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbhc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
