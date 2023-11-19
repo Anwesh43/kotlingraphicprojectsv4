@@ -146,7 +146,7 @@ class LineBentHalfCircleView(ctx : Context) : View(ctx) {
             state.update(cb)
         }
 
-        fun startUpdating(cb : (Float) -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             state.startUpdating(cb)
         }
 
