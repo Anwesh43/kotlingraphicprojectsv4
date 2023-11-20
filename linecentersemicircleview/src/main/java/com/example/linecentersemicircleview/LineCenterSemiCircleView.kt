@@ -213,4 +213,13 @@ class LineCenterSemiCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineCenterSemiCircleView {
+            val view : LineCenterSemiCircleView = LineCenterSemiCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
