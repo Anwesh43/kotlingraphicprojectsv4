@@ -42,11 +42,11 @@ fun Canvas.drawLineCenterSemiCircle(scale : Float, w : Float, h : Float, paint :
     }
     drawXY(w / 2, h / 2) {
         drawXY(0f, h * 0.5f * (1 - dsc(0))) {
-            rotate(rot * dsc(1))
+            rotate(-rot * dsc(1))
             drawLine(0f, 0f, 0f, size, paint)
         }
         for (j in 0..1) {
-            drawXY(size * j, 0f) {
+            drawXY(size * j * 0.5f, 0f) {
                 drawArc(RectF(0f, -size / 4, size / 2, size / 4), 180f, 180f * dsc(2).divideScale(j, 2), true, paint)
             }
         }
