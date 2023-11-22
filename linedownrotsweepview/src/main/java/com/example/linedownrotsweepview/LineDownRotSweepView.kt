@@ -186,4 +186,27 @@ class LineDownRotSweepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDownRotSweepView) {
+
+        private val animator : Animator = Animator(view)
+        private val ldrs : LineDownRotSweep = LineDownRotSweep(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldrs.draw(canvas, paint)
+            animator.animate {
+                ldrs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldrs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
