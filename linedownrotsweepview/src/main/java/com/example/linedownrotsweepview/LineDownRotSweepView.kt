@@ -211,4 +211,13 @@ class LineDownRotSweepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDownRotSweepView {
+            val view : LineDownRotSweepView = LineDownRotSweepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
