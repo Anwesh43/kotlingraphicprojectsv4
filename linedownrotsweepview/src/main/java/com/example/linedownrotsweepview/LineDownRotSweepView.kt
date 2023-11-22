@@ -60,3 +60,18 @@ fun Canvas.drawLDRSNode(i : Int, scale : Float, paint : Paint) {
     drawLineDownRotSweep(scale, w, h, paint)
 }
 
+class LineDownRotSweepView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
