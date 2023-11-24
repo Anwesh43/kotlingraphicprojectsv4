@@ -45,7 +45,7 @@ fun Canvas.drawTriSqDownRot(scale : Float, w : Float, h : Float, paint : Paint) 
             rotate(-rot * dsc(3))
             drawRect(RectF(-size, 0f, 0f, size * dsc(2)), paint)
         }
-        drawLine(0f, 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLine(0f, 0f, size * 0.5f * dsc(0), -size * 0.5f * dsc(0), paint)
         drawXY(size * 0.5f, -size * 0.5f) {
             drawLine(0f, 0f, size * 0.5f * dsc(1), size * 0.5f * dsc(1), paint)
         }
