@@ -212,4 +212,13 @@ class TriSqDownRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TriSqDownRotView {
+            val view : TriSqDownRotView = TriSqDownRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
