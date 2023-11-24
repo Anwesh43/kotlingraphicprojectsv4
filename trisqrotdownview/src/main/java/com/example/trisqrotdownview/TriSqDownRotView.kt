@@ -187,4 +187,27 @@ class TriSqDownRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriSqDownRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val tsdr : TriSqDownRot = TriSqDownRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tsdr.draw(canvas, paint)
+            animator.animate {
+                tsdr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tsdr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
