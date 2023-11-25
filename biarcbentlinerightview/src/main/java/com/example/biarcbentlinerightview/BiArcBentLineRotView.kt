@@ -213,4 +213,13 @@ class BiArcBentLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiArcBentLineRotView {
+            val view : BiArcBentLineRotView = BiArcBentLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
