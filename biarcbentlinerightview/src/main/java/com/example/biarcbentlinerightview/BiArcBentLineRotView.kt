@@ -188,4 +188,27 @@ class BiArcBentLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiArcBentLineRotView) {
+
+        private val bablr : BiArcBentLineRot = BiArcBentLineRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bablr.draw(canvas, paint)
+            animator.animate {
+                bablr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bablr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
