@@ -209,4 +209,13 @@ class RightSmallLineUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : RightSmallLineUpView {
+            val view : RightSmallLineUpView = RightSmallLineUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
