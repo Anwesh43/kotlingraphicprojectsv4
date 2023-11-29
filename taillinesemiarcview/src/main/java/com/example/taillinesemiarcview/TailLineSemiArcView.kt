@@ -120,4 +120,45 @@ class TailLineSemiArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class TLSANode(var i : Int = 0, val state : State = State()) {
+
+        private var next : TLSANode? = null
+        private var prev : TLSANode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = TLSANode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawTLSANode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUdpating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : TLSANode {
+            var curr : TLSANode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
