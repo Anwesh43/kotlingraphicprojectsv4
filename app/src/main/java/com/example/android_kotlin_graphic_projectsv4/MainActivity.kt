@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.trihalfarcrotupview.TriHalfArcRotUpView
+import com.example.taillinesemiarcview.TailLineSemiArcView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        TriHalfArcRotUpView.create(this)
+        TailLineSemiArcView.create(this)
     }
 }
