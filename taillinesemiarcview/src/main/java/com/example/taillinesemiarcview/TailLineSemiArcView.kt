@@ -44,8 +44,8 @@ fun Canvas.drawTailLineSemiArc(scale : Float, w : Float, h : Float, paint : Pain
         rotate(rot * dsc(2))
         drawXY(0f, -size / 2) {
             drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f, 180f * dsc(0), true, paint)
-            drawLine(0f, 0f, -size * 0.5f * dsc(1), size * 0.5f * dsc(1), paint)
         }
+        drawLine(0f, 0f, -size * 0.5f * dsc(1), size * 0.5f * dsc(1), paint)
     }
 }
 
