@@ -184,4 +184,27 @@ class RightSmallLineUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightSmallLineUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val rslu : RightSmallLineUp = RightSmallLineUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rslu.draw(canvas, paint)
+            animator.animate {
+                rslu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rslu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
