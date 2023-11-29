@@ -209,4 +209,13 @@ class TailLineSemiArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TailLineSemiArcView {
+            val view : TailLineSemiArcView = TailLineSemiArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
