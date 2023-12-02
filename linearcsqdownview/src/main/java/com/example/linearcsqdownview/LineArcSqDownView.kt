@@ -163,7 +163,7 @@ class LineArcSqDownView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineArdSqDown(var i : Int) {
+    data class LineArcSqDown(var i : Int) {
 
         private var curr : LASDNode = LASDNode(0)
         private var dir : Int = 1
@@ -183,6 +183,29 @@ class LineArcSqDownView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineArcSqDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lasd : LineArcSqDown = LineArcSqDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lasd.draw(canvas, paint)
+            animator.animate {
+                lasd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lasd.startUpdating {
+                animator.start()
+            }
         }
     }
 }
