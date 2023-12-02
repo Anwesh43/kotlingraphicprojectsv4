@@ -210,4 +210,13 @@ class LineArcSqDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineArcSqDownView {
+            val view : LineArcSqDownView = LineArcSqDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
