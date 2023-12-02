@@ -43,7 +43,7 @@ fun Canvas.drawLineArcSqDown(scale : Float, w : Float, h : Float, paint : Paint)
     drawXY(w / 2, h / 2 + (h / 2 + size / 2) * dsc(3)) {
         rotate(rot * dsc(2))
         drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
-        drawXY(-size / 2, 0f) {
+        drawXY(-size / 4, 0f) {
             drawArc(RectF(-size / 4, -size / 4, size / 4, size / 4), 180f, 180f * dsc(1), true, paint)
         }
         drawRect(RectF(0f, 0f, size / 2, size * 0.5f * dsc(1)), paint)
