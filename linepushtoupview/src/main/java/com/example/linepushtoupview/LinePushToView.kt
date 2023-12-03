@@ -184,4 +184,27 @@ class LinePushToUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LinePushToUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lptu : LinePushToUp = LinePushToUp(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lptu.draw(canvas, paint)
+            animator.animate {
+                lptu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lptu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
