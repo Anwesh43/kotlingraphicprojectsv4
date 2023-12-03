@@ -40,12 +40,11 @@ fun Canvas.drawLinePushToUp(scale : Float, w : Float, h : Float, paint : Paint) 
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2) {
-        drawXY(0f, 0f) {
+        drawXY(0f, -h * 0.5f * dsc(3)) {
             rotate(rot * dsc(1))
-            drawXY(0f, 0f) {
-                drawLine(0f, 0f, -size * dsc(0), 0f, paint)
-            }
+            drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         }
+        drawLine(0f, 0f, -size * (dsc(0) - dsc(2)), 0f, paint)
     }
 }
 
