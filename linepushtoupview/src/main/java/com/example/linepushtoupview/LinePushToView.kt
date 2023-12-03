@@ -209,4 +209,13 @@ class LinePushToUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LinePushToUpView {
+            val view : LinePushToUpView = LinePushToUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
