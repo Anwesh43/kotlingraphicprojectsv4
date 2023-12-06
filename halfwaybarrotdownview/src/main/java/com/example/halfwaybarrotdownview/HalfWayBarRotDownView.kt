@@ -209,4 +209,12 @@ class HalfWayBarRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : HalfWayBarRotDownView {
+            val view : HalfWayBarRotDownView = HalfWayBarRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
