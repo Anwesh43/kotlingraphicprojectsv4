@@ -185,4 +185,27 @@ class LineAboveHalfArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineAboveHalfArcView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+        private val laha : LineAboveHalfArc = LineAboveHalfArc(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            laha.draw(canvas, paint)
+            animator.animate {
+                laha.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            laha.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
