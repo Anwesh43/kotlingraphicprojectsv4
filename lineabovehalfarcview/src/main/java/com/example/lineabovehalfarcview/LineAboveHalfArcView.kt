@@ -210,4 +210,13 @@ class LineAboveHalfArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineAboveHalfArcView {
+            val view : LineAboveHalfArcView = LineAboveHalfArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
