@@ -46,7 +46,7 @@ fun Canvas.drawLineAboveHalfArc(scale : Float, w : Float, h : Float, paint : Pai
         drawXY(-size / 2, -size / 2) {
             drawLine(0f, 0f, size * 0.5f * dsc(1).divideScale(0, 2), size * 0.5f * dsc(1).divideScale(0, 2), paint)
         }
-        drawLine(0f, 0f, size * 0.5f * dsc(1).divideScale(1, 2), size * 0.5f * dsc(1).divideScale(1, 2), paint)
+        drawLine(0f, 0f, size * 0.5f * dsc(1).divideScale(1, 2), -size * 0.5f * dsc(1).divideScale(1, 2), paint)
     }
 }
 
