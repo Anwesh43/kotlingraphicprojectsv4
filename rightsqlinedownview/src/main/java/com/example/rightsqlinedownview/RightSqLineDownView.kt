@@ -124,4 +124,45 @@ class RightSqLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class RSLDNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : RSLDNode? = null
+        private var prev : RSLDNode? = null
+
+        init {
+
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = RSLDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawRSLDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : RSLDNode {
+            var curr : RSLDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
