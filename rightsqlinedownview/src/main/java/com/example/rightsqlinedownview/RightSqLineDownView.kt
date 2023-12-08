@@ -213,4 +213,13 @@ class RightSqLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : RightSqLineDownView {
+            val view : RightSqLineDownView = RightSqLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
