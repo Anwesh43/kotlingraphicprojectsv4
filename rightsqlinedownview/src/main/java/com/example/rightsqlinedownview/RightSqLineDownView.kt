@@ -188,4 +188,27 @@ class RightSqLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightSqLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val rsld : RightSqLineDown = RightSqLineDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rsld.draw(canvas, paint)
+            animator.animate {
+                rsld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rsld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
