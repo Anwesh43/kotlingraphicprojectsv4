@@ -133,7 +133,7 @@ class RightSqLineDownView(ctx : Context) : View(ctx) {
         private var prev : RSLDNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
