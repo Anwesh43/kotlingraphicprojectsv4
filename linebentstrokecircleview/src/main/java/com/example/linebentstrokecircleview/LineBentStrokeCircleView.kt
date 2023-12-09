@@ -40,13 +40,13 @@ fun Canvas.drawLineBentStrokeCircle(scale : Float, w : Float, h : Float, paint :
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(1))
             drawLine(0f, 0f, 0f, size * dsc(0), paint)
         }
         drawXY(0f, 0f) {
-            drawArc(RectF(0f, -size / 2, size, size / 2), 180f, rot * dsc(2), false, paint)
+            drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 2 * rot * dsc(2), false, paint)
         }
     }
 }
