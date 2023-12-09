@@ -212,4 +212,13 @@ class LineBentStrokeCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBentStrokeCircleView {
+            val view : LineBentStrokeCircleView = LineBentStrokeCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
