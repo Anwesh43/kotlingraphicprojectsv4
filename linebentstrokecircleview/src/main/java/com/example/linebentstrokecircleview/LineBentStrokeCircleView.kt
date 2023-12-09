@@ -123,4 +123,45 @@ class LineBentStrokeCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LBSCNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LBSCNode? = null
+        private var prev : LBSCNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LBSCNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBSCNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBSCNode {
+            var curr : LBSCNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
