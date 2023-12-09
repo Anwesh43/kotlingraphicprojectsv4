@@ -187,4 +187,27 @@ class LineBentStrokeCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBentStrokeCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbsc : LineBentStrokeCircle = LineBentStrokeCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbsc.draw(canvas, paint)
+            animator.animate {
+                lbsc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbsc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
