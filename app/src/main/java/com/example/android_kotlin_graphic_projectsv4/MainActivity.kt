@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.rightsqlinedownview.RightSqLineDownView
+import com.example.linebentstrokecircleview.LineBentStrokeCircleView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        RightSqLineDownView.create(this)
+        LineBentStrokeCircleView.create(this)
     }
 }
