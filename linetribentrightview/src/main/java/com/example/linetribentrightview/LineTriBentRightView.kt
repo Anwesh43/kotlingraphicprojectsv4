@@ -214,4 +214,13 @@ class LineTriBentRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineTriBentRightView {
+            val view : LineTriBentRightView = LineTriBentRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
