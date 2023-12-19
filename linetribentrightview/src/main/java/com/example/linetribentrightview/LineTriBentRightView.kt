@@ -189,4 +189,27 @@ class LineTriBentRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineTriBentRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val ltbr : LineTriBentRight = LineTriBentRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ltbr.draw(canvas, paint)
+            animator.animate {
+                ltbr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ltbr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
