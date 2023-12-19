@@ -48,8 +48,10 @@ fun Canvas.drawLineTriBentRight(scale : Float, w : Float, h : Float, paint : Pai
             if (deg == 0f) {
                 deg = -rot
             }
-            rotate(deg * dsc(j + 1))
-            drawLine(0f, 0f, 0f, size * dsc(0), paint)
+            drawXY(0f, 0f) {
+                rotate(deg * dsc(j + 1))
+                drawLine(0f, 0f, 0f, size * dsc(0), paint)
+            }
         }
     }
 }
