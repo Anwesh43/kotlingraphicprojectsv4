@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.linerotsqtopview.LineRotSqTopView
+import com.example.linetribentrightview.LineTriBentRightView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        LineRotSqTopView.create(this)
+        LineTriBentRightView.create(this)
     }
 }
