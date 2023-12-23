@@ -124,7 +124,7 @@ class LineRotSemiArcUpView(ctx : Context) : View(ctx) {
     data class LRSAUNode(var i : Int = 0, val state : State = State()) {
 
         private var next : LRSAUNode? = null
-        private val prev : LRSAUNode? = null
+        private var prev : LRSAUNode? = null
 
         init {
             addNeighbor()
@@ -159,6 +159,29 @@ class LineRotSemiArcUpView(ctx : Context) : View(ctx) {
             }
             cb()
             return this
+        }
+    }
+
+    data class LineRotSemiArcRotUp(var i : Int = 0) {
+
+        private var curr : LRSAUNode = LRSAUNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
         }
     }
 }
