@@ -162,7 +162,7 @@ class LineRotSemiArcUpView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineRotSemiArcRotUp(var i : Int = 0) {
+    data class LineRotSemiArcUp(var i : Int = 0) {
 
         private var curr : LRSAUNode = LRSAUNode(0)
         private var dir : Int = 1
@@ -182,6 +182,29 @@ class LineRotSemiArcUpView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineRotSemiArcUpView) {
+
+        private val lrsau : LineRotSemiArcUp = LineRotSemiArcUp(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrsau.draw(canvas, paint)
+            animator.animate {
+                lrsau.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrsau.startUpdating {
+                animator.start()
+            }
         }
     }
 }
