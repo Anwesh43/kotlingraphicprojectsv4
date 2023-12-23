@@ -209,4 +209,13 @@ class LineRotSemiArcUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotSemiArcUpView {
+            val view : LineRotSemiArcUpView = LineRotSemiArcUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
