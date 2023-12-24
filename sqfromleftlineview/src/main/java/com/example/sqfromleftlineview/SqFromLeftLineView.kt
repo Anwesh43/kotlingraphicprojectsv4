@@ -195,4 +195,27 @@ class SqFromLeftLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqFromLeftLineView) {
+
+        private val sfll : SqFromLeftLine = SqFromLeftLine(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sfll.draw(canvas, paint)
+            animator.animate {
+                sfll.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sfll.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
