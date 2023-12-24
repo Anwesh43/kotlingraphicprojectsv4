@@ -220,4 +220,12 @@ class SqFromLeftLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : SqFromLeftLineView {
+            val view : SqFromLeftLineView = SqFromLeftLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
