@@ -46,10 +46,10 @@ fun Canvas.drawLineRotBentDown(scale : Float, w : Float, h : Float, paint : Pain
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(-sweep * dsc(1) * j)
-                drawLine(0f, 0f, 0f, size * dsc(0), paint)
+                drawLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
-        drawArc(RectF(-size / 4, -size / 4, size / 4, size / 4), -sweep * dsc(1), sweep * dsc(1), true, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -sweep * dsc(1), sweep * dsc(1), true, paint)
     }
 }
 
