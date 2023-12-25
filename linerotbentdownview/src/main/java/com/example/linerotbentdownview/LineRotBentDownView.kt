@@ -41,7 +41,7 @@ fun Canvas.drawLineRotBentDown(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         rotate(rot * dsc(2))
         for (j in 0..1) {
             drawXY(0f, 0f) {
