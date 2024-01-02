@@ -189,4 +189,27 @@ class BiLineRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineRotRightView) {
+
+        private val blrr : BiLineRotRight = BiLineRotRight(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(Color.parseColor(backColor))
+            blrr.draw(canvas, paint)
+            animator.animate {
+                blrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
