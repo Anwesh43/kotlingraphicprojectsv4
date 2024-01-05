@@ -208,4 +208,13 @@ class LinePeakRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LinePeakRotRightView {
+            val view : LinePeakRotRightView = LinePeakRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
