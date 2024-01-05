@@ -43,7 +43,7 @@ fun Canvas.drawLinePeakRotRight(scale : Float, w : Float, h : Float, paint : Pai
         rotate(rot * dsc(2))
         drawLine(0f, 0f, 0f, -size * dsc(0), paint)
         drawXY(0f, -size) {
-            drawLine(0f, 0f, -size / 2, -size * dsc(1), paint)
+            drawLine(0f, 0f, -size * 0.5f * dsc(1), size * dsc(1), paint)
         }
     }
 }
