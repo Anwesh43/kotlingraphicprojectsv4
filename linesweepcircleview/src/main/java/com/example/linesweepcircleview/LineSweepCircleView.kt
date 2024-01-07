@@ -184,4 +184,27 @@ class LineSweepCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSweepCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lsc : LineSweepCircle = LineSweepCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsc.draw(canvas, paint)
+            animator.animate {
+                lsc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
