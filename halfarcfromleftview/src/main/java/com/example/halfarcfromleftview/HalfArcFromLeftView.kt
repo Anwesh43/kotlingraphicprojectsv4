@@ -127,7 +127,7 @@ class HalfArcFromLeftView(ctx : Context) : View(ctx) {
         private var prev : HAFLNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
