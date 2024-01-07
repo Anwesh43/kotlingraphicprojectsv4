@@ -182,4 +182,27 @@ class HalfArcFromLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcFromLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val hafl : HalfArcFromLeft = HalfArcFromLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hafl.draw(canvas, paint)
+            animator.animate {
+                hafl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hafl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
