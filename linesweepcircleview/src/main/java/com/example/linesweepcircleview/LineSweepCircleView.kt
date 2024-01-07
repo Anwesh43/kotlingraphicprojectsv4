@@ -18,8 +18,8 @@ val colors : Array<String> = arrayOf(
 )
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
-val parts : Int = 4
-val scGap : Float = 0.04f / parts
+val parts : Int = 3
+val scGap : Float = 0.03f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
