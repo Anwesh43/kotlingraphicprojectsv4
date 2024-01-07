@@ -207,4 +207,13 @@ class HalfArcFromLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfArcFromLeftView {
+            val view : HalfArcFromLeftView = HalfArcFromLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
