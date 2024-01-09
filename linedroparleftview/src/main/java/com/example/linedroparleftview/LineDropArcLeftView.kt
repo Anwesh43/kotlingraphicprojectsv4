@@ -185,4 +185,27 @@ class LineDropArcLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDropArcLeftView) {
+
+        private val animator : Animator = Animator(view)
+        privatte val ldal : LineDropArcLeft = LineDropArcLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldal.draw(canvas, paint)
+            animator.animate {
+                ldal.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldal.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
