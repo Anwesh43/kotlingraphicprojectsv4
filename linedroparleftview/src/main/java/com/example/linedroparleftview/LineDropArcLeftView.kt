@@ -61,14 +61,16 @@ fun Canvas.drawLDALNode(i : Int, scale : Float, paint : Paint) {
 
 class LineDropArcLeftView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -189,7 +191,7 @@ class LineDropArcLeftView(ctx : Context) : View(ctx) {
     data class Renderer(var view : LineDropArcLeftView) {
 
         private val animator : Animator = Animator(view)
-        privatte val ldal : LineDropArcLeft = LineDropArcLeft(0)
+        private val ldal : LineDropArcLeft = LineDropArcLeft(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
         fun render(canvas : Canvas) {
