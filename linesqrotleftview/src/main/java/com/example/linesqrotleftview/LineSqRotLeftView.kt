@@ -145,7 +145,7 @@ class LineSqRotLeftView(ctx : Context) : View(ctx) {
         }
 
         fun draw(canvas : Canvas, paint : Paint) {
-            canvas.drawLSRLNode(i, state.scale)
+            canvas.drawLSRLNode(i, state.scale, paint)
         }
 
         fun update(cb : (Float) -> Unit) {
@@ -189,6 +189,29 @@ class LineSqRotLeftView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineSqRotLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val lsrl : LineSqRotLeft = LineSqRotLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsrl.draw(canvas, paint)
+            animator.animate {
+                lsrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsrl.startUpdating {
+                animator.start()
+            }
         }
     }
 }
