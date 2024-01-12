@@ -150,7 +150,7 @@ class LineBisectRotRightView(ctx : Context) : View(ctx) {
             state.startUpdating(cb)
         }
 
-        fun getNext(dir : Int, cb : () -> Unit) {
+        fun getNext(dir : Int, cb : () -> Unit) : LBRRNode {
             var curr : LBRRNode? = prev
             if (dir == 1) {
                 curr = next
