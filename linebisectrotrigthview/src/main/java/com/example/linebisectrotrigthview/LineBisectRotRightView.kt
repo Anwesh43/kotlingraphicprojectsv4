@@ -44,7 +44,7 @@ fun Canvas.drawLineBisectRotRight(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(2))
         for (j in 0..1) {
             drawXY(-size / 4 + size * 0.5f * j, -h * 0.5f * (1 - dsc(j))) {
-                drawLine(0f, 0f, 0f, -size + (size / 2) * j)
+                drawLine(0f, 0f, 0f, -size + (size / 2) * j, paint)
             }
         }
     }
@@ -57,4 +57,20 @@ fun Canvas.drawLBRRNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawLineBisectRotRight(scale, w, h, paint)
+}
+
+class LineBisectRotRightView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
