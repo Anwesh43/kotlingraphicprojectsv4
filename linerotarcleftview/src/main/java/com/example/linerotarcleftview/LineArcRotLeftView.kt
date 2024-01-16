@@ -214,4 +214,13 @@ class LineArcRotLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineArcRotLeftView {
+            val view : LineArcRotLeftView = LineArcRotLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
