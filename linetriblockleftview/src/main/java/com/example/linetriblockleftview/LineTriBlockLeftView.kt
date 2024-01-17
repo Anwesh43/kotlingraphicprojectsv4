@@ -211,4 +211,13 @@ class LineTriBlockLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineTriBlockLeftView {
+            val view : LineTriBlockLeftView = LineTriBlockLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
