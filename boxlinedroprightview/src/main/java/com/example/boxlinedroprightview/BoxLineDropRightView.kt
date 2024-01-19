@@ -105,6 +105,34 @@ class BoxLineDropRightView(ctx : Context) : View(ctx) {
         }
     }
 
+    data class Animator(var view : View, var animated : Boolean = false) {
+
+        fun animate(cb : () -> Unit) {
+            if (animated) {
+                cb()
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
+            }
+        }
+
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
+            }
+        }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
+    }
+
     data class BLDRNode(var i : Int = 0, val state : State = State()) {
 
         private var next : BLDRNode? = null
