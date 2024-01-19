@@ -188,4 +188,27 @@ class LineAltRotSideView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineAltRotSideView) {
+
+        private val animator : Animator = Animator(view)
+        private val lars : LineAltRotSide = LineAltRotSide(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lars.draw(canvas, paint)
+            animator.animate {
+                lars.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lars.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
