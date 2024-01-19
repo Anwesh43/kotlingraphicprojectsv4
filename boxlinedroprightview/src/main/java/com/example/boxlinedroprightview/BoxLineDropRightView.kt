@@ -221,4 +221,13 @@ class BoxLineDropRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BoxLineDropRightView {
+            val view : BoxLineDropRightView = BoxLineDropRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
