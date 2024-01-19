@@ -17,7 +17,7 @@ val colors : Array<String> = arrayOf(
 )
 val steps : Int = 3
 val parts : Int = 2 * steps
-val scGap : Float = 0.04f / steps
+val scGap : Float = 0.04f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -44,8 +44,8 @@ fun Canvas.drawLineAltRotSide(scale : Float, w : Float, h : Float, paint : Paint
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2 * j)
-                drawXY(w * 0.5f * dsc(2 * j + 2), -h * 0.5f * (1 - dsc(2 * j))) {
-                    rotate(rot * dsc(2 * j + 1))
+                drawXY(w * 0.5f * dsc(steps * j + 2), -h * 0.5f * (1 - dsc(j * steps))) {
+                    rotate(rot * dsc(steps * j + 1))
                     drawLine(0f, 0f, 0f, -size, paint)
                 }
             }
