@@ -196,4 +196,27 @@ class BoxLineDropRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BoxLineDropRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val bldr : BoxLineDropRight = BoxLineDropRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bldr.draw(canvas, paint)
+            animator.animate {
+                bldr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bldr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
