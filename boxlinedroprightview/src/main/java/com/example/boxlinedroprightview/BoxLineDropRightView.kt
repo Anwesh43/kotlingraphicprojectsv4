@@ -51,7 +51,7 @@ fun Canvas.drawBoxLineDropRight(scale : Float, w : Float, h : Float, paint : Pai
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawXY(-size * 0.5f * dsc(2), -h * 0.5f * (1 - dsc(1))) {
+        drawXY(-size * dsc(2), -h * 0.5f * (1 - dsc(1))) {
             drawLine(-size / 2, 0f, size / 2, 0f, paint)
         }
         drawXY(0f, h * 0.5f * (1 - dsc(0))) {
