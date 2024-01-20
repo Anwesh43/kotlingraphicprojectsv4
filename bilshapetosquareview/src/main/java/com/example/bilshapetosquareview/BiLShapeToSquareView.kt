@@ -45,7 +45,7 @@ fun Canvas.drawBiLShapeToSquare(scale : Float, w : Float, h : Float, paint : Pai
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(-w * 0.5f * (1 - dsc(0)), 0f) {
+                drawXY(-w * 0.5f * (1 - dsc(0)) - size * 0.5f * dsc(1), 0f) {
                     rotate(rot * dsc(1))
                     drawLine(0f, 0f, -size / 2, 0f, paint)
                     drawLine(0f, 0f, 0f, -size, paint)
