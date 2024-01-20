@@ -215,4 +215,13 @@ class BiLShapeToSquareView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BiLShapeToSquareView {
+            val view : BiLShapeToSquareView = BiLShapeToSquareView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
