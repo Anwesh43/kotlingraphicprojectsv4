@@ -190,4 +190,21 @@ class BiLShapeToSquareView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLShapeToSquareView) {
+
+        private val animator : Animator = Animator(view)
+        private val blsts : BiLShapeToSquare = BiLShapeToSquare(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blsts.draw(canvas, paint)
+            animator.animate {
+                blsts.update {
+                    animator.stop()
+                }
+            }
+        }
+    }
 }
