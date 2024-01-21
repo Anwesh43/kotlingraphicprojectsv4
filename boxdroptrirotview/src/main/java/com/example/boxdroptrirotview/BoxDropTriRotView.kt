@@ -212,4 +212,12 @@ class BoxDropTriRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BoxDropTriRotView {
+            val view : BoxDropTriRotView = BoxDropTriRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
