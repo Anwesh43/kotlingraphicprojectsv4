@@ -190,4 +190,27 @@ class ParallelLineToBoxView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ParallelLineToBoxView) {
+
+        private val animator : Animator = Animator(view)
+        private val pltb : ParallelLineToBox = ParallelLineToBox(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            pltb.draw(canvas, paint)
+            animator.animate {
+                pltb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            pltb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
