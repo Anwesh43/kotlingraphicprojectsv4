@@ -215,4 +215,12 @@ class ParallelLineToBoxView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : ParallelLineToBoxView {
+            val view : ParallelLineToBoxView = ParallelLineToBoxView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
