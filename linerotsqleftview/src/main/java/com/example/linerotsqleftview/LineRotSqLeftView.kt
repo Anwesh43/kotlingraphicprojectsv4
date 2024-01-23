@@ -18,7 +18,7 @@ val colors : Array<String> = arrayOf(
 )
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val strokeFactor : Float = 4.9f
+val strokeFactor : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -40,7 +40,7 @@ fun Canvas.drawLineRotSqLeft(scale : Float, w : Float, h : Float, paint : Paint)
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, -h * 0.5f * (1 - dsc(0))) {
             rotate(rot * dsc(1))
             drawLine(0f, 0f, 0f, -size, paint)
