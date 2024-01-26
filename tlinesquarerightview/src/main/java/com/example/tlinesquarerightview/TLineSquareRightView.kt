@@ -214,4 +214,12 @@ class TLineSquareRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : TLineSquareRightView {
+            val view : TLineSquareRightView = TLineSquareRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
