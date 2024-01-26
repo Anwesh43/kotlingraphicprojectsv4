@@ -62,3 +62,19 @@ fun Canvas.drawTLSRNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawTLineSquareRight(scale, w, h, paint)
 }
+
+class TLineSquareRightView(ctx : Context) {
+
+    fun onDraw(canvas : Canvas) {
+
+    }
+
+    fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
