@@ -63,13 +63,13 @@ fun Canvas.drawTLSRNode(i : Int, scale : Float, paint : Paint) {
     drawTLineSquareRight(scale, w, h, paint)
 }
 
-class TLineSquareRightView(ctx : Context) {
+class TLineSquareRightView(ctx : Context) : View(ctx) {
 
-    fun onDraw(canvas : Canvas) {
+    override fun onDraw(canvas : Canvas) {
 
     }
 
-    fun onTouchEvent(event : MotionEvent) : Boolean {
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
 
@@ -187,6 +187,29 @@ class TLineSquareRightView(ctx : Context) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : TLineSquareRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val tlsr : TLineSquareRight = TLineSquareRight(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tlsr.draw(canvas, paint)
+            animator.animate {
+                tlsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlsr.startUpdating {
+                animator.start()
+            }
         }
     }
 }
