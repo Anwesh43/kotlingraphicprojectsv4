@@ -185,4 +185,27 @@ class LineArcCreateRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcCreateRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val lacr : LineArcCreateRight = LineArcCreateRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lacr.draw(canvas, paint)
+            animator.animate {
+                lacr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lacr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
