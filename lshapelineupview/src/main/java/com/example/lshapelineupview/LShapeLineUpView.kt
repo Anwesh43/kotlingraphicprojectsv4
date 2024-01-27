@@ -210,4 +210,13 @@ class LShapeLineUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LShapeLineUpView {
+            val view : LShapeLineUpView = LShapeLineUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
