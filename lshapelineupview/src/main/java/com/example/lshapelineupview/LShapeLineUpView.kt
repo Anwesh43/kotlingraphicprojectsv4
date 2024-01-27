@@ -44,7 +44,7 @@ fun Canvas.drawLShapeLineUp(scale : Float, w : Float, h : Float, paint : Paint) 
         for (j in 0..1) {
             drawXY(-w * 0.5f * (1 - dsc(0)) - size * j * dsc(2), 0f) {
                 rotate(rot * dsc(1) * j)
-                drawLine(0f, 0f, 0f, -size, paint)
+                drawLine(0f, 0f, -size, 0f, paint)
             }
         }
     }
