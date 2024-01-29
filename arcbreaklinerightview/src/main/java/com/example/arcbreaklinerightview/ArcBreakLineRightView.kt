@@ -217,4 +217,12 @@ class ArcBreakLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcBreakLineRightView {
+            val view : ArcBreakLineRightView = ArcBreakLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
