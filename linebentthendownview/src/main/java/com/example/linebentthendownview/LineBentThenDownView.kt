@@ -130,7 +130,7 @@ class LineBentThenDownView(ctx : Context) : View(ctx) {
         private var next : LBTDNode? = null
 
         init {
-
+            addNegihbor()
         }
 
         fun addNegihbor() {
