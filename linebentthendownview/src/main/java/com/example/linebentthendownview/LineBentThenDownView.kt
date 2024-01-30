@@ -121,4 +121,45 @@ class LineBentThenDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LBTDNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : LBTDNode? = null
+        private var next : LBTDNode? = null
+
+        init {
+
+        }
+
+        fun addNegihbor() {
+            if (this.i < colors.size - 1) {
+                next = LBTDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBTDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBTDNode {
+            var curr : LBTDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
