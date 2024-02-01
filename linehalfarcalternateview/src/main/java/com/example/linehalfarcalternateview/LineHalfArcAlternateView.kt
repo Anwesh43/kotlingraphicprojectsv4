@@ -184,4 +184,27 @@ class LineHalfArcAlternateView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineHalfArcAlternateView) {
+
+        private var lhaa : LineHalfArcAlternate = LineHalfArcAlternate(0)
+        private var animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lhaa.draw(canvas, paint)
+            animator.animate {
+                lhaa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lhaa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
