@@ -40,7 +40,7 @@ fun Canvas.drawLineHalfArcAlternate(scale : Float, w : Float, h : Float, paint :
     val dsc : (Int) -> Float = {scale.divideScale(it, parts)}
     drawXY(w / 2, h / 2) {
         drawXY(w * 0.5f * dsc(3), 0f) {
-            rotate(rot * (1 - dsc(2)))
+            rotate(-rot * (1 - dsc(2)))
             drawLine(0f, 0f, size * dsc(0), 0f, paint)
         }
         drawXY(-w * 0.5f * dsc(3), 0f) {
