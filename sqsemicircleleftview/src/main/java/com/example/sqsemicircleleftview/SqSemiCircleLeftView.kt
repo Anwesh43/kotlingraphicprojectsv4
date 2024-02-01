@@ -210,4 +210,13 @@ class SqSemiCircleLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SqSemiCircleLeftView {
+            val view : SqSemiCircleLeftView = SqSemiCircleLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
