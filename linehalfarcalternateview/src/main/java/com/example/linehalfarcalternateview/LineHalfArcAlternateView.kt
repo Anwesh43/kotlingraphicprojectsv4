@@ -209,4 +209,13 @@ class LineHalfArcAlternateView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineHalfArcAlternateView {
+            val view : LineHalfArcAlternateView = LineHalfArcAlternateView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
