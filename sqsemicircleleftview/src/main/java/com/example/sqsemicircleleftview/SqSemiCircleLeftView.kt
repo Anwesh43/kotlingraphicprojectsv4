@@ -185,4 +185,27 @@ class SqSemiCircleLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqSemiCircleLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val sscl : SqSemiCircleLeft = SqSemiCircleLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sscl.draw(canvas, paint)
+            animator.animate {
+                sscl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sscl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
