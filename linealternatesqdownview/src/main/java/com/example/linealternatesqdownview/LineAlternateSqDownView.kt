@@ -46,7 +46,7 @@ fun Canvas.drawLineAlternateSqDown(scale : Float, w : Float, h : Float, paint : 
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 drawXY((w / 2) * (1 - dsc(0)), 0f) {
-                    drawLine(0f, 0f, size / 2, 0f, paint)
+                    drawLine(0f, 0f, size, 0f, paint)
                 }
             }
         }
