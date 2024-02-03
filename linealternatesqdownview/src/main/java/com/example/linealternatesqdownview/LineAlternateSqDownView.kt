@@ -190,5 +190,27 @@ class LineAlternateSqDownView(ctx : Context) : View(ctx) {
                 curr.startUpdating(cb)
             }
         }
+
+        data class Renderer(var view : LineAlternateSqDownView) {
+            private val lasd : LineAlternateSqDown = LineAlternateSqDown(0)
+            private val animator : Animator = Animator(view)
+            private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+            fun render(canvas : Canvas) {
+                canvas.drawColor(backColor)
+                lasd.draw(canvas, paint)
+                animator.animate{
+                    lasd.update {
+                        animator.stop()
+                    }
+                }
+            }
+
+            fun handleTap() {
+                lasd.startUpdating {
+                    animator.start()
+                }
+            }
+        }
     }
 }
