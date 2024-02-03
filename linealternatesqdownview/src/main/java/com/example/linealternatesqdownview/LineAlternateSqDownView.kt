@@ -215,4 +215,13 @@ class LineAlternateSqDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineAlternateSqDownView {
+            val view : LineAlternateSqDownView = LineAlternateSqDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
