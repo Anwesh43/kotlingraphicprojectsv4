@@ -67,6 +67,7 @@ fun Canvas.drawLASDNode(i : Int, scale : Float, paint : Paint) {
 
 class LineAlternateSqDownView(ctx : Context) : View(ctx) {
 
+    private val renderer : Renderer = R
     override fun onDraw(canvas : Canvas) {
 
     }
@@ -98,118 +99,118 @@ class LineAlternateSqDownView(ctx : Context) : View(ctx) {
                 cb()
             }
         }
+    }
 
-        data class Animator(var view : View, var animated : Boolean = false) {
+    data class Animator(var view : View, var animated : Boolean = false) {
 
-            fun animate(cb : () -> Unit) {
-                if (animated) {
-                    cb()
-                    try {
-                        Thread.sleep(delay)
-                        view.invalidate()
-                    } catch(ex : Exception) {
-
-                    }
-                }
-            }
-
-            fun start() {
-                if (!animated) {
-                    animated = true
-                    view.postInvalidate()
-                }
-            }
-
-            fun stop() {
-                if (animated) {
-                    animated = false
-                }
-            }
-        }
-
-        data class LASDNode(var i : Int = 0, val state : State = State()) {
-
-            private var next : LASDNode? = null
-            private var prev : LASDNode? = null
-
-            init {
-                addNeighbor()
-            }
-
-            fun addNeighbor() {
-                if (i < colors.size - 1) {
-                    next = LASDNode(i + 1)
-                    next?.prev = this
-                }
-            }
-
-            fun draw(canvas : Canvas, paint : Paint) {
-                canvas.drawLASDNode(i, state.scale, paint)
-            }
-
-            fun update(cb : (Float) -> Unit) {
-                state.update(cb)
-            }
-
-            fun startUpdating(cb : () -> Unit) {
-                state.startUpdating(cb)
-            }
-
-            fun getNext(dir : Int, cb : () -> Unit) : LASDNode {
-                var curr : LASDNode? = prev
-                if (dir == 1) {
-                    curr = next
-                }
-                if (curr != null) {
-                    return curr
-                }
+        fun animate(cb : () -> Unit) {
+            if (animated) {
                 cb()
-                return this
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
             }
         }
 
-        data class LineAlternateSqDown(var i : Int) {
-
-            private var curr : LASDNode = LASDNode(0)
-            private var dir : Int = 1
-
-            fun draw(canvas : Canvas, paint : Paint) {
-                curr.draw(canvas, paint)
-            }
-
-            fun update(cb : (Float) -> Unit) {
-                curr.update {
-                    curr = curr.getNext(dir) {
-                        dir *= -1
-                    }
-                    cb(it)
-                }
-            }
-
-            fun startUpdating(cb : () -> Unit) {
-                curr.startUpdating(cb)
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
             }
         }
 
-        data class Renderer(var view : LineAlternateSqDownView) {
-            private val lasd : LineAlternateSqDown = LineAlternateSqDown(0)
-            private val animator : Animator = Animator(view)
-            private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
+    }
 
-            fun render(canvas : Canvas) {
-                canvas.drawColor(backColor)
-                lasd.draw(canvas, paint)
-                animator.animate{
-                    lasd.update {
-                        animator.stop()
-                    }
+    data class LASDNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LASDNode? = null
+        private var prev : LASDNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LASDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLASDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LASDNode {
+            var curr : LASDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
+
+    data class LineAlternateSqDown(var i : Int) {
+
+        private var curr : LASDNode = LASDNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineAlternateSqDownView) {
+        private val lasd : LineAlternateSqDown = LineAlternateSqDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lasd.draw(canvas, paint)
+            animator.animate{
+                lasd.update {
+                    animator.stop()
                 }
             }
+        }
 
-            fun handleTap() {
-                lasd.startUpdating {
-                    animator.start()
-                }
+        fun handleTap() {
+            lasd.startUpdating {
+                animator.start()
             }
         }
     }
