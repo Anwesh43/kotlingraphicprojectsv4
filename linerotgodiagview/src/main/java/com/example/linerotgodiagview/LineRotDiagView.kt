@@ -64,14 +64,16 @@ fun Canvas.drawLRGDNode(i : Int, scale : Float, paint : Paint) {
 
 class LineRotDiagView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -95,119 +97,118 @@ class LineRotDiagView(ctx : Context) : View(ctx) {
                 cb()
             }
         }
+    }
+    data class Animator(var view : View, var animated : Boolean = false) {
 
-        data class Animator(var view : View, var animated : Boolean = false) {
-
-            fun animate(cb : () -> Unit) {
-                if (animated) {
-                    cb()
-                    try {
-                        Thread.sleep(delay)
-                        view.invalidate()
-                    } catch(ex : Exception) {
-
-                    }
-                }
-            }
-
-            fun start() {
-                if (!animated) {
-                    animated = true
-                    view.postInvalidate()
-                }
-            }
-
-            fun stop() {
-                if (animated) {
-                    animated = false
-                }
-            }
-        }
-
-        data class LRGDNode(var i : Int = 0, val state : State = State()) {
-
-            private var next : LRGDNode? = null
-            private var prev : LRGDNode? = null
-
-            init {
-                addNeighbor()
-            }
-
-            fun addNeighbor() {
-                if (i < colors.size - 1) {
-                    next = LRGDNode(i + 1)
-                    next?.prev = this
-                }
-            }
-
-            fun draw(canvas : Canvas, paint : Paint) {
-                canvas.drawLRGDNode(i, state.scale, paint)
-            }
-
-            fun update(cb : (Float) -> Unit) {
-                state.update(cb)
-            }
-
-            fun startUpdating(cb : () -> Unit) {
-                state.startUpdating(cb)
-            }
-
-            fun getNext(dir : Int, cb : () -> Unit) : LRGDNode {
-                var curr : LRGDNode? = prev
-                if (dir == 1) {
-                    curr = next
-                }
-                if (curr != null) {
-                    return curr
-                }
+        fun animate(cb : () -> Unit) {
+            if (animated) {
                 cb()
-                return this
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
             }
         }
 
-        data class LineRotGoDiag(var i : Int) {
-
-            private var curr : LRGDNode = LRGDNode(0)
-            private var dir : Int = 1
-
-            fun draw(canvas : Canvas, paint : Paint) {
-                curr.draw(canvas, paint)
-            }
-
-            fun update(cb : (Float) -> Unit) {
-                curr.update {
-                    curr = curr.getNext(dir) {
-                        dir *= -1
-                    }
-                    cb(it)
-                }
-            }
-
-            fun startUpdating(cb : () -> Unit) {
-                curr.startUpdating(cb)
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
             }
         }
 
-        data class Renderer(var view : LineRotDiagView) {
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
+    }
 
-            private val lrgd : LineRotGoDiag = LineRotGoDiag(0)
-            private val animator : Animator = Animator(view)
-            private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    data class LRGDNode(var i : Int = 0, val state : State = State()) {
 
-            fun render(canvas : Canvas) {
-                canvas.drawColor(backColor)
-                lrgd.draw(canvas, paint)
-                animator.animate {
-                    lrgd.update {
-                        animator.stop()
-                    }
+        private var next : LRGDNode? = null
+        private var prev : LRGDNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LRGDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLRGDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LRGDNode {
+            var curr : LRGDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
+
+    data class LineRotGoDiag(var i : Int) {
+
+        private var curr : LRGDNode = LRGDNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineRotDiagView) {
+
+        private val lrgd : LineRotGoDiag = LineRotGoDiag(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrgd.draw(canvas, paint)
+            animator.animate {
+                lrgd.update {
+                    animator.stop()
                 }
             }
+        }
 
-            fun handleTap() {
-                lrgd.startUpdating {
-                    animator.start()
-                }
+        fun handleTap() {
+            lrgd.startUpdating {
+                animator.start()
             }
         }
     }
