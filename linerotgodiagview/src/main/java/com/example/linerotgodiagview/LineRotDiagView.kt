@@ -44,7 +44,7 @@ fun Canvas.drawLineRotDiag(scale : Float, w : Float, h : Float, paint : Paint) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY((w / 2) * (1 - dsc(0)) + (w / 2) * dsc(j + 2), -h * 0.5f * dsc(j + 2)) {
+                drawXY((w / 2) * (1 - dsc(0)) + (w / 2) * dsc(j + 2), -w * 0.5f * dsc(j + 2)) {
                     rotate(-rot * dsc(1))
                     drawLine(0f, 0f, size, 0f, paint)
                 }
