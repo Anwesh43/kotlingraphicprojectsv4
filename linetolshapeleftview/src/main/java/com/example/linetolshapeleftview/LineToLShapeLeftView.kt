@@ -209,4 +209,13 @@ class LineToLShapeLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineToLShapeLeftView {
+            val view : LineToLShapeLeftView = LineToLShapeLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
