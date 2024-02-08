@@ -39,10 +39,10 @@ fun Canvas.drawCrossLineIntoSingle(scale : Float, w : Float, h : Float, paint : 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * (1f - 2 * j) * (1 - dsc(1)))
+                rotate(rot * (1f - 2 * j) * (1 - dsc(2)))
                 drawLine(0f, -size * 0.5f * dsc(j), 0f, size * 0.5f * dsc(j), paint)
             }
         }
