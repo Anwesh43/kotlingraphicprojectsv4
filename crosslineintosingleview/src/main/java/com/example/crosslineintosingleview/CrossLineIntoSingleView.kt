@@ -183,4 +183,27 @@ class CrossLineIntoSingleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CrossLineIntoSingleView) {
+
+        private val animator : Animator = Animator(view)
+        private val clis : CrossLineIntoSingle = CrossLineIntoSingle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            clis.draw(canvas, paint)
+            animator.animate {
+                clis.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            clis.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
