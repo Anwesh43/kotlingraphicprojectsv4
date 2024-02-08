@@ -208,4 +208,12 @@ class CrossLineIntoSingleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : CrossLineIntoSingleView {
+            val view : CrossLineIntoSingleView = CrossLineIntoSingleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
