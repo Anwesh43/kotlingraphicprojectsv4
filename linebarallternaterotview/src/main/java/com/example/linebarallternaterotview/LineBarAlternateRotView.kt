@@ -40,13 +40,15 @@ fun Canvas.drawLineBarRot(scale : Float, w : Float, h : Float, paint : Paint) {
         scale.divideScale(it, parts)
     }
     val size : Float = Math.min(w, h) / sizeFactor
-    drawXY(0f, h * 0.5f * dsc(3)) {
-        rotate(-rot * dsc(1))
-        drawLine(0f, 0f, 0f, size * dsc(0), paint)
-    }
-    drawXY(0f, -h * 0.5f * dsc(3)) {
-        rotate(rot * dsc(2))
-        drawRect(RectF(0f, 0f, size * 0.5f, -size * dsc(0)), paint)
+    drawXY(w * 0.5f * dsc(3), 0f) {
+        drawXY(0f, 0f) {
+            rotate(-rot * dsc(1))
+            drawLine(0f, 0f, 0f, size * dsc(0), paint)
+        }
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(2))
+            drawRect(RectF(0f, 0f, size * 0.5f, -size * dsc(0)), paint)
+        }
     }
 }
 fun Canvas.drawLineBarAlternateRot(scale : Float, w : Float, h : Float, paint : Paint) {
