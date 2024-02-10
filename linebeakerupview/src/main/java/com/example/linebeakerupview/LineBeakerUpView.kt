@@ -212,4 +212,13 @@ class LineBeakerUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBeakerUpView {
+            val view : LineBeakerUpView = LineBeakerUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
