@@ -191,8 +191,31 @@ class LineBarAlternateRotView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startUpadting(cb : () -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineBarAlternateRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbar : LineBarAlternateRot = LineBarAlternateRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbar.draw(canvas, paint)
+            animator.animate {
+                lbar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbar.startUpdating {
+                animator.start()
+            }
         }
     }
 }
