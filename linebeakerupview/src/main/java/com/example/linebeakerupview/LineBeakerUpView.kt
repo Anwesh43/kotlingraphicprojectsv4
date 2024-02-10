@@ -35,7 +35,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawLineBeakerUp(scale : Float, w : Float, h : Float, paint : Paint) {
-    val size : Float = Math.min(w, h) / strokeFactor
+    val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
