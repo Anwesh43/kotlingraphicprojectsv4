@@ -220,4 +220,13 @@ class LineBarAlternateRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineBarAlternateRotView {
+            val view : LineBarAlternateRotView = LineBarAlternateRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
