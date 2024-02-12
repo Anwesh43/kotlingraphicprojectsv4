@@ -58,3 +58,19 @@ fun Canvas.drawHCRSONode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     drawHalfCircleRotScaleOut(scale, w, h, paint)
 }
+
+class HalfCircleRotScaleOutView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
