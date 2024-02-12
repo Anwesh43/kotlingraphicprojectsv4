@@ -17,7 +17,7 @@ val colors : Array<String> = arrayOf(
     "#00C853"
 )
 val parts : Int = 4
-val scGap : Float = 0.04f / parts
+val scGap : Float = 0.08f / parts
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
