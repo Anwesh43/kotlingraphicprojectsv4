@@ -210,4 +210,13 @@ class HalfCircleRotScaleOutView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfCircleRotScaleOutView {
+            val view : HalfCircleRotScaleOutView = HalfCircleRotScaleOutView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
