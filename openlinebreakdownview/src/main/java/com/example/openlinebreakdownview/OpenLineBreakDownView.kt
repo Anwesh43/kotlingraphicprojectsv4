@@ -212,4 +212,13 @@ class OpenLineBreakDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : OpenLineBreakDownView {
+            val view : OpenLineBreakDownView = OpenLineBreakDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
