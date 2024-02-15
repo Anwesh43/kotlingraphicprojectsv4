@@ -187,4 +187,27 @@ class OpenLineBreakDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : OpenLineBreakDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val olbd : OpenLineBreakDown = OpenLineBreakDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            olbd.draw(canvas, paint)
+            animator.animate {
+                olbd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            olbd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
