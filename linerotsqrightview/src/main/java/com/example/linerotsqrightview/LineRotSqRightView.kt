@@ -186,4 +186,27 @@ class LineRotSqRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotSqRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrss : LineRotSqRight = LineRotSqRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrss.draw(canvas, paint)
+            animator.animate {
+                lrss.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrss.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
