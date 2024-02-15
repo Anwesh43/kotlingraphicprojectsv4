@@ -45,7 +45,7 @@ fun Canvas.drawOpenLineBreakDown(scale : Float, w : Float, h : Float, paint : Pa
         }
         for (j in 0..1) {
             drawXY(0f, h * 0.5f * (1 - dsc(0))) {
-                rotate(rot * (1f - 2 * j) * dsc(1))
+                rotate(rot * (1f - 2 * j) * dsc(2))
                 drawLine(0f, 0f, 0f, size, paint)
             }
         }
