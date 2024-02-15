@@ -46,7 +46,7 @@ fun Canvas.drawLineRotSqRight(scale : Float, w : Float, h : Float, paint : Paint
             drawLine(0f, 0f, size, 0f, paint)
         }
         drawXY((w / 2) * (1 - dsc(2)), 0f) {
-            drawRect(RectF(0f, 0f, size, size), paint)
+            drawRect(RectF(0f, 0f, size / 2, size / 2), paint)
         }
     }
 }
