@@ -212,4 +212,12 @@ class LineDivideBisectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineDivideBisectView {
+            val view : LineDivideBisectView = LineDivideBisectView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
