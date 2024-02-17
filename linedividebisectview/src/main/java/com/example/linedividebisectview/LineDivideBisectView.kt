@@ -41,7 +41,7 @@ fun Canvas.drawLineDivideBisect(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         rotate(rot * dsc(2))
         for (j in 0..2) {
             drawXY((w / 2) * (1 - dsc(0)), 0f) {
