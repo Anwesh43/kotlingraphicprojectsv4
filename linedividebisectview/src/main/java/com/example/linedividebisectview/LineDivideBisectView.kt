@@ -187,4 +187,27 @@ class LineDivideBisectView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Rendeter(var view : LineDivideBisectView) {
+
+        private val animator : Animator = Animator(view)
+        private val ldb : LineDivideBisect = LineDivideBisect(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldb.draw(canvas, paint)
+            animator.animate {
+                ldb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
