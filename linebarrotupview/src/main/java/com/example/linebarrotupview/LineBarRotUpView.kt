@@ -209,4 +209,13 @@ class LineBarRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineBarRotUpView {
+            val view : LineBarRotUpView = LineBarRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
