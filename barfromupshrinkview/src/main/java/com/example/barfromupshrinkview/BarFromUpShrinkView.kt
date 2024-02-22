@@ -206,4 +206,13 @@ class BarFromUpShrinkView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarFromUpShrinkView {
+            val view : BarFromUpShrinkView = BarFromUpShrinkView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
