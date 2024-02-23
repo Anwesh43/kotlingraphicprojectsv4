@@ -113,6 +113,12 @@ class ArcLineRotDownView(ctx : Context) : View(ctx) {
                 view.postInvalidate()
             }
         }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
     }
 
     data class ALRDNode(var i : Int = 0, val state : State = State()) {
@@ -176,6 +182,29 @@ class ArcLineRotDownView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : ArcLineRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val alrd : ArcLineRotDown = ArcLineRotDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            alrd.draw(canvas, paint)
+            animator.animate {
+                alrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            alrd.startUpdating {
+                animator.start()
+            }
         }
     }
 }
