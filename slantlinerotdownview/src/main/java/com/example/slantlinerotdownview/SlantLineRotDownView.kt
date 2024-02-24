@@ -186,4 +186,27 @@ class SlantLineRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view  : SlantLineRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val slrd : SlantLineRotDown = SlantLineRotDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            slrd.draw(canvas, paint)
+            animator.animate {
+                slrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            slrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
