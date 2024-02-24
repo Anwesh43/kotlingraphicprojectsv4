@@ -211,4 +211,12 @@ class SlantLineRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : SlantLineRotDownView {
+            val view : SlantLineRotDownView = SlantLineRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
