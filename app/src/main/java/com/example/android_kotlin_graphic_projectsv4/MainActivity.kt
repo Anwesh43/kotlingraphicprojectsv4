@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.slantlinerotdownview.SlantLineRotDownView
+import com.example.barsemicircledownview.BarSemiCircleDownView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        SlantLineRotDownView.create(this)
+        BarSemiCircleDownView.create(this)
     }
 }
