@@ -41,10 +41,11 @@ fun Canvas.drawHalfCapsuleRotDown(scale : Float, w : Float, h : Float, paint : P
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
-        rotate(rot * dsc(2))
-        drawRect(RectF(size * (1 - dsc(0)), 0f, size, size), paint)
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(2))
+            drawRect(RectF(size * (1 - dsc(0)), 0f, size, size), paint)
+        }
         drawArc(RectF(-size, -size / 2, 0f, size / 2), 0f, 180f * dsc(1), true, paint)
-
     }
 }
 
