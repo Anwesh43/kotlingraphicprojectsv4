@@ -206,4 +206,13 @@ class HalfCapsuleRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfCapsuleRotDownView {
+            val view : HalfCapsuleRotDownView = HalfCapsuleRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
