@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.halfcapsulerotdownview.HalfCapsuleRotDownView
+import com.example.linerotthenarcview.LineRotThenArcView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        HalfCapsuleRotDownView.create(this)
+        LineRotThenArcView.create(this)
     }
 }
