@@ -209,4 +209,13 @@ class LineRotThenArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineRotThenArcView {
+            val view : LineRotThenArcView = LineRotThenArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
