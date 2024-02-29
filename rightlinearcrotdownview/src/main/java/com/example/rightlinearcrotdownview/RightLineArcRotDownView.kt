@@ -169,7 +169,7 @@ class RightLineArcRotDownView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class RightLienArcRotDown(var i : Int) {
+    data class RightLineArcRotDown(var i : Int) {
 
         private var curr : RLARDNode = RLARDNode(0)
         private var dir : Int = 1
@@ -189,6 +189,29 @@ class RightLineArcRotDownView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : RightLineArcRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlard : RightLineArcRotDown = RightLineArcRotDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlard.draw(canvas, paint)
+            animator.animate {
+                rlard.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlard.startUpdating {
+                animator.start()
+            }
         }
     }
 }
