@@ -215,5 +215,14 @@ class BarCircleDiminishView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BarCircleDiminishView {
+            val view : BarCircleDiminishView = BarCircleDiminishView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
 
