@@ -190,5 +190,28 @@ class BarCircleDiminishView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarCircleDiminishView) {
+
+        private val animator : Animator = Animator(view)
+        private val bcd : BarCircleDiminish = BarCircleDiminish(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bcd.draw(canvas, paint)
+            animator.animate {
+                bcd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bcd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
 
