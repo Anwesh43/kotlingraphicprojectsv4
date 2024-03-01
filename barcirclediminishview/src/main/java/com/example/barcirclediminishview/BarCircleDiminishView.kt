@@ -47,7 +47,7 @@ fun Canvas.drawBarCircleDiminish(scale : Float, w : Float, h : Float, paint : Pa
         }
         drawXY(w * 0.5f * (1 - dsc(1)), 0f) {
             drawArc(
-                RectF(0f, -size / 2, size, size / 2),
+                RectF(0f, -size, size, 0f),
                 rot * dsc(2),
                 rot * (1 - dsc(2)),
                 true,
