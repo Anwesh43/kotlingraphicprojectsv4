@@ -41,7 +41,7 @@ fun Canvas.drawLineSemiCircleComplete(scale : Float, w : Float, h : Float, paint
         scale.divideScale(it, parts)
     }
     val updatedDeg : Float = 2 * rot * dsc(2)
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         drawXY(-w * 0.5f * (1 - dsc(0)), 0f) {
             rotate(-rot * dsc(1))
             drawLine(0f, 0f, -size, 0f, paint)
