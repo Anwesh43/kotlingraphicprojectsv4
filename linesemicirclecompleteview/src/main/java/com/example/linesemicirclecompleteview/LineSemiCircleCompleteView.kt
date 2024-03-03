@@ -211,4 +211,12 @@ class LineSemiCircleCompleteView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineSemiCircleCompleteView {
+            val view : LineSemiCircleCompleteView = LineSemiCircleCompleteView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
