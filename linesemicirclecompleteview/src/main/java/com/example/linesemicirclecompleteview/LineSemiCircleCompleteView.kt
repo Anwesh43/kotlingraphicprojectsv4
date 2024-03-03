@@ -186,4 +186,27 @@ class LineSemiCircleCompleteView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSemiCircleCompleteView) {
+
+        private val animator : Animator = Animator(view)
+        private val lma : LineSemiCircleComplete = LineSemiCircleComplete(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lma.draw(canvas, paint)
+            animator.animate {
+                lma.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lma.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
