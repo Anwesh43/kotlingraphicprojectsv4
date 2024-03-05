@@ -209,4 +209,13 @@ class LineCupLineExtendView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineCupLineExtendView {
+            val view : LineCupLineExtendView = LineCupLineExtendView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
