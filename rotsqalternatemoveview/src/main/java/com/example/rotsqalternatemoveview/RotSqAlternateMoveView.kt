@@ -183,6 +183,28 @@ class RotSqAlternateMoveView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
         }
+    }
 
+    data class Renderer(var view : RotSqAlternateMoveView) {
+
+        private val animator : Animator = Animator(view)
+        private val rsam : RotSqAlternateMove = RotSqAlternateMove(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rsam.draw(canvas, paint)
+            animator.animate {
+                rsam.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rsam.startUpdating {
+                animator.start()
+            }
+        }
     }
 }
