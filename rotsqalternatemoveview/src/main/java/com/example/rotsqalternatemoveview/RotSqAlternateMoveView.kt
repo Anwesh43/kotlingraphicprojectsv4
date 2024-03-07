@@ -209,4 +209,13 @@ class RotSqAlternateMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotSqAlternateMoveView {
+            val view : RotSqAlternateMoveView = RotSqAlternateMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
