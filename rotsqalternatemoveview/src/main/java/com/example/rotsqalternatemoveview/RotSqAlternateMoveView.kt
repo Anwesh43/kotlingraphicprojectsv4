@@ -42,10 +42,10 @@ fun Canvas.drawRotSqAlternateMove(scale : Float, w : Float, h : Float, paint : P
     }
     drawXY(w / 2, h / 2) {
         rotate(rot * dsc(2))
-        drawXY(0f, -h * 0.5f * (1 - dsc(1)) + (w / 2) * dsc(3)) {
+        drawXY(0f, -h * 0.5f * (1 - dsc(1)) - (w / 2) * dsc(3)) {
             drawCircle(0f, -size / 2, size / 2, paint)
         }
-        drawXY(0f, h * 0.5f * (1 - dsc(0)) - (w / 2) * dsc(3)) {
+        drawXY(0f, h * 0.5f * (1 - dsc(0)) + (w / 2) * dsc(3)) {
             drawRect(RectF(-size / 2, 0f, size / 2, size), paint)
         }
     }
