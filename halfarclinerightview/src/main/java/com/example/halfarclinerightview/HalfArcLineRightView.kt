@@ -183,4 +183,27 @@ class HalfArcLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcLineRightView) {
+
+        private val harl : HalfArcLineRight = HalfArcLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            harl.draw(canvas, paint)
+            animator.animate {
+                harl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            harl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
