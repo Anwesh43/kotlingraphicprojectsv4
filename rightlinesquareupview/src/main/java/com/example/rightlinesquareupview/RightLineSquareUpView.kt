@@ -189,4 +189,27 @@ class RightLineSquareUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineSquareUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlsu : RightLineSquareUp = RightLineSquareUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlsu.draw(canvas, paint)
+            animator.animate {
+                rlsu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlsu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
