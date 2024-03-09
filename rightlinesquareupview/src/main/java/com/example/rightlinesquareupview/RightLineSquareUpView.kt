@@ -214,4 +214,12 @@ class RightLineSquareUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RightLineSquareUpView {
+            val view : RightLineSquareUpView = RightLineSquareUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
