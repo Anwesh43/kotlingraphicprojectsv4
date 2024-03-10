@@ -211,4 +211,13 @@ class LineBallRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineBallRotDownView {
+            val view : LineBallRotDownView = LineBallRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
