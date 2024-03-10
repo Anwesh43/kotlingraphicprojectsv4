@@ -186,4 +186,27 @@ class LineBallRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBallRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbrd : LineBallRotDown = LineBallRotDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbrd.draw(canvas, paint)
+            animator.animate {
+                lbrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
