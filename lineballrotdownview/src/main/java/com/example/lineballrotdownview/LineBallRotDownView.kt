@@ -45,7 +45,7 @@ fun Canvas.drawLineBallRotDown(scale : Float, w : Float, h : Float, paint : Pain
             rotate(rot * dsc(2))
             drawCircle(size / 3, 0f, size / 3, paint)
         }
-        drawXY(0f, (h / 2) * (1 - dsc(0))) {
+        drawXY(0f, -(h / 2) * (1 - dsc(0))) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
     }
@@ -56,7 +56,7 @@ fun Canvas.drawLBRDNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
-    paint.strokeWidth = Math.min(w, h) / sizeFactor
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawLineBallRotDown(scale, w, h, paint)
 }
 
