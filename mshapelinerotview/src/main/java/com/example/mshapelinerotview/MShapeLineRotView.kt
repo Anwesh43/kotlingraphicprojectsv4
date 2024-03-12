@@ -189,4 +189,27 @@ class MShapeLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MShapeLineRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val mslr : MShapeLineRot = MShapeLineRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mslr.draw(canvas, paint)
+            animator.animate {
+                mslr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mslr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
