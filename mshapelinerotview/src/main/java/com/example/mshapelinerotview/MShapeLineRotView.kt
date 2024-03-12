@@ -47,7 +47,7 @@ fun Canvas.drawMShapeLineRot(scale : Float, w : Float, h : Float, paint : Paint)
                 val b : Float = size * 0.5f * dsc(j).divideScale(1, 2)
                 drawLine(0f, 0f, a, -a, paint)
                 drawXY(size / 2, -size / 2) {
-                    drawLine(0f, 0f, a, b, paint)
+                    drawLine(0f, 0f, b, b, paint)
                 }
             }
         }
