@@ -214,4 +214,13 @@ class MShapeLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MShapeLineRotView {
+            val view : MShapeLineRotView = MShapeLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
