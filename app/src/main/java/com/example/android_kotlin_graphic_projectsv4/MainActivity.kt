@@ -2,7 +2,7 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mshapelinerotview.MShapeLineRotView
+import com.example.linearcjoindownview.LineArcJoinDownView
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        MShapeLineRotView.create(this)
+        LineArcJoinDownView.create(this)
     }
 }
