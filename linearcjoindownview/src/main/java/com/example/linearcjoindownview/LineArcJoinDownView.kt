@@ -184,4 +184,27 @@ class LineArcJoinDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcJoinDownView) {
+
+        private val lajd : LineArcJoinDown = LineArcJoinDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lajd.draw(canvas, paint)
+            animator.animate {
+                lajd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lajd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
