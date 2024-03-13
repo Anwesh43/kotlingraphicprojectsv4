@@ -44,7 +44,7 @@ fun Canvas.drawLineArcJoinDown(scale : Float, w : Float, h : Float, paint : Pain
         rotate(rot * dsc(2))
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, 180f * dsc(0), false, paint)
         drawXY(0f, -size / 2 + (h / 2 + size / 2) * ( 1- dsc(1))) {
-            drawLine(0f, 0f, 0f, size, paint)
+            drawLine(0f, 0f, 0f, size / 2, paint)
         }
     }
 }
