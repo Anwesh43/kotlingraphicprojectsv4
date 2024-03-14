@@ -211,4 +211,12 @@ class RightAlternateRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RightAlternateRotView {
+            val view : RightAlternateRotView = RightAlternateRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
