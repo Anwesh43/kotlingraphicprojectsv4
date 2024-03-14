@@ -186,4 +186,27 @@ class RightAlternateRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightAlternateRotView) {
+
+        private var rar : RightAlternateRot = RightAlternateRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rar.draw(canvas, paint)
+            animator.animate {
+                rar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
