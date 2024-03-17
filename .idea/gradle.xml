@@ -75,6 +75,7 @@
             <option value="$PROJECT_DIR$/linerotbentdownview" />
             <option value="$PROJECT_DIR$/linerotgodiagview" />
             <option value="$PROJECT_DIR$/linerothalfarcrightview" />
+            <option value="$PROJECT_DIR$/linerotjoinrightview" />
             <option value="$PROJECT_DIR$/linerotsemiarcupview" />
             <option value="$PROJECT_DIR$/linerotsemicircleview" />
             <option value="$PROJECT_DIR$/linerotsqleftview" />
@@ -91,6 +92,7 @@
             <option value="$PROJECT_DIR$/lineupdownhalfcircleview" />
             <option value="$PROJECT_DIR$/lshapelineupview" />
             <option value="$PROJECT_DIR$/mshapelinerotview" />
+            <option value="$PROJECT_DIR$/mylibrary" />
             <option value="$PROJECT_DIR$/openlinebreakdownview" />
             <option value="$PROJECT_DIR$/parallellinesemicircleview" />
             <option value="$PROJECT_DIR$/parallellinetoboxview" />
