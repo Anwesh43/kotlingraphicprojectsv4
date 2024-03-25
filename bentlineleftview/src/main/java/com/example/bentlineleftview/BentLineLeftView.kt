@@ -209,4 +209,13 @@ class BentLineLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BentLineLeftView {
+            val view : BentLineLeftView = BentLineLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
