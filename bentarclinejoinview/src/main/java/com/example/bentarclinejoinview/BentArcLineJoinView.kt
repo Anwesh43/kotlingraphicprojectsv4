@@ -131,7 +131,7 @@ class BentArcLineJoinView(ctx : Context) : View(ctx) {
         private var prev : BALJNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
