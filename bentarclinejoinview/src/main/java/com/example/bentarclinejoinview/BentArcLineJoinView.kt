@@ -211,4 +211,13 @@ class BentArcLineJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BentArcLineJoinView {
+            val view : BentArcLineJoinView = BentArcLineJoinView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
