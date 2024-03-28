@@ -50,3 +50,26 @@ fun Canvas.drawSquareBentLineLeft(scale : Float, w : Float, h : Float, paint : P
         }
     }
 }
+
+fun Canvas.drawSBLLNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawSquareBentLineLeft(scale, w, h, paint)
+}
+
+class SquareBentLineLeftView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+
+        }
+        return true
+    }
+}
