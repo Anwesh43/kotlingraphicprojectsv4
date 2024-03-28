@@ -184,4 +184,27 @@ class SquareBentLineLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareBentLineLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val sbll : SquareBentLineLeft = SquareBentLineLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sbll.draw(canvas, paint)
+            animator.animate {
+                sbll.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sbll.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
