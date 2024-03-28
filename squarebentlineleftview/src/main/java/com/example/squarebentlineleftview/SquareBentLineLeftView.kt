@@ -211,4 +211,13 @@ class SquareBentLineLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SquareBentLineLeftView {
+            val view : SquareBentLineLeftView = SquareBentLineLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
