@@ -19,7 +19,7 @@ val colors : Array<String> = arrayOf(
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 4.9f
+val sizeFactor : Float = 11.2f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 270f
@@ -40,7 +40,7 @@ fun Canvas.drawThreeQuarterCircle(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + r) * dsc(3)) {
         drawXY((w / 2 - r) * (1 - dsc(2)), 0f) {
             drawArc(RectF(-r, -r, r, r), -90f, 90f * dsc(1), true, paint)
         }
