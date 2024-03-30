@@ -54,3 +54,14 @@ fun Canvas.drawTQCNode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     drawThreeQuarterCircle(scale, w, h, paint)
 }
+
+class ThreeQuarterCircleView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return true
+    }
+}
