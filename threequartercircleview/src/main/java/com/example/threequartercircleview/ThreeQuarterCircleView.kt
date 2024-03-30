@@ -207,4 +207,13 @@ class ThreeQuarterCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ThreeQuarterCircleView {
+            val view : ThreeQuarterCircleView = ThreeQuarterCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
