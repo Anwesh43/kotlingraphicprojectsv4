@@ -189,5 +189,28 @@ class RightAngleArcContainerView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightAngleArcContainerView) {
+
+        private val raac : RightAngleArcContainer = RightAngleArcContainer(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            raac.draw(canvas, paint)
+            animator.animate {
+                raac.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            raac.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
 
