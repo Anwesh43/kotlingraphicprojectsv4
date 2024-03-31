@@ -18,7 +18,7 @@ val colors : Array<String> = arrayOf(
 )
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val strokeFactor : Float = 4.9f
+val strokeFactor : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -40,14 +40,14 @@ fun Canvas.drawRightAngleArcContainer(scale : Float, w : Float, h : Float, paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2) * dsc(3), h / 2) {
         drawXY(0f,h * 0.5f * (1 - dsc(0))) {
             rotate(rot * dsc(1))
             drawLine(0f, 0f, 0f, size, paint)
         }
         val r : Float = size / 4
         for (j in 0..1) {
-            drawXY(-size + 2 * r * j, 0f) {
+            drawXY(-size + r + 2 * r * j, 0f) {
                 drawArc(RectF(-r, -r, r, r), 180f, 180f * dsc(2).divideScale(j, 2), true, paint)
             }
         }
