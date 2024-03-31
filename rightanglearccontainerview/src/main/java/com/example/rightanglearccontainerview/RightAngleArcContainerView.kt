@@ -214,5 +214,14 @@ class RightAngleArcContainerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : RightAngleArcContainerView {
+            val view : RightAngleArcContainerView = RightAngleArcContainerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
 
