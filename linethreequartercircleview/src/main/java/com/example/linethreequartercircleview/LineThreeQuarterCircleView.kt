@@ -209,4 +209,12 @@ class LineThreeQuarterCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineThreeQuarterCircleView {
+            val view : LineThreeQuarterCircleView = LineThreeQuarterCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
