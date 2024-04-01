@@ -184,4 +184,27 @@ class LineThreeQuarterCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineThreeQuarterCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val ltqc : LineThreeQuarterCircle = LineThreeQuarterCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ltqc.draw(canvas, paint)
+            animator.animate {
+                ltqc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ltqc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
