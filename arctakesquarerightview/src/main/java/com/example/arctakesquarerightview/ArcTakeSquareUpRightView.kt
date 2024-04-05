@@ -40,7 +40,7 @@ fun Canvas.drawArcTakeSquareUpRight(scale : Float, w : Float, h : Float, paint :
         scale.divideScale(it, parts)
     }
     val size : Float = Math.min(w, h) / sizeFactor
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, -h * 0.5f * (1 - dsc(0))) {
             rotate(rot * dsc(1))
             drawRect(RectF(-size, -size, 0f, 0f), paint)
