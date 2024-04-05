@@ -120,4 +120,45 @@ class ArcTakeSquareUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class ATSURNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : ATSURNode? = null
+        private var next : ATSURNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = ATSURNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawATSURNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : ATSURNode {
+            var curr : ATSURNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
