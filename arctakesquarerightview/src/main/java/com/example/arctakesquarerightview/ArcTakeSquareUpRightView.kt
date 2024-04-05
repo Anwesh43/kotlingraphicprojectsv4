@@ -184,4 +184,27 @@ class ArcTakeSquareUpRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcTakeSquareUpRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val atsur : ArcTakeSquareUpRight = ArcTakeSquareUpRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            atsur.draw(canvas, paint)
+            animator.animate {
+                atsur.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            atsur.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
