@@ -209,4 +209,13 @@ class ArcTakeSquareUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ArcTakeSquareUpRightView {
+            val view : ArcTakeSquareUpRightView = ArcTakeSquareUpRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
