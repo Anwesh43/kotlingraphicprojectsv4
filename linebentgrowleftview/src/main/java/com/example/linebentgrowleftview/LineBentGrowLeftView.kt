@@ -183,4 +183,27 @@ class LineBentGrowLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBentGrowLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lbgl : LineBentGrowLeft = LineBentGrowLeft(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbgl.draw(canvas, paint)
+            animator.animate {
+                lbgl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbgl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
