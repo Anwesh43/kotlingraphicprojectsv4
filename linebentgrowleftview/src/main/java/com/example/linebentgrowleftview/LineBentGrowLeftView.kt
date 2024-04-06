@@ -119,4 +119,45 @@ class LineBentGrowLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LBGLNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : LBGLNode? = null
+        private var next : LBGLNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i  < colors.size - 1) {
+                next = LBGLNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBGLNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBGLNode {
+            var curr : LBGLNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
