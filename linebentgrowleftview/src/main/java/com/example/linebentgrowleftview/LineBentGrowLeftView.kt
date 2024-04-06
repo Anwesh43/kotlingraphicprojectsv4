@@ -208,4 +208,12 @@ class LineBentGrowLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineBentGrowLeftView {
+            val view : LineBentGrowLeftView = LineBentGrowLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
