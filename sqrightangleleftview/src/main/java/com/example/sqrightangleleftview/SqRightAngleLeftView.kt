@@ -184,4 +184,27 @@ class SqRightAngleLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqRightAngleLeftView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+        private val sral : SqRightAngleLeft = SqRightAngleLeft(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sral.draw(canvas, paint)
+            animator.animate {
+                sral.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sral.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
