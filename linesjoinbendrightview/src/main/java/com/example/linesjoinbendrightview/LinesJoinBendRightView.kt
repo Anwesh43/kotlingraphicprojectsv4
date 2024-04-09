@@ -163,7 +163,7 @@ class LinesJoinBendRightView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineJoinBendRight(var i : Int) {
+    data class LinesJoinBendRight(var i : Int) {
 
         private var curr : LJBRNode = LJBRNode(0)
         private var dir : Int = 1
@@ -183,6 +183,29 @@ class LinesJoinBendRightView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LinesJoinBendRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val ljbr : LinesJoinBendRight = LinesJoinBendRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ljbr.draw(canvas, paint)
+            animator.animate {
+                ljbr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ljbr.startUpdating {
+                animator.start()
+            }
         }
     }
 }
