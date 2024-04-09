@@ -43,7 +43,7 @@ fun Canvas.drawLinesJoinBendRight(scale : Float, w : Float, h : Float, paint : P
         drawXY(-(w / 2) * (1 - dsc(0)), 0f) {
             drawLine(0f, 0f, -size, 0f, paint)
         }
-        drawXY(0f, (h / 2) * (1 - dsc(1))) {
+        drawXY(0f, -(h / 2) * (1 - dsc(1))) {
             rotate(-rot * dsc(2))
             drawLine(0f, 0f, 0f, -size, paint)
         }
