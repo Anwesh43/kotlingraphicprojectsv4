@@ -210,4 +210,12 @@ class LinesJoinBendRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LinesJoinBendRightView {
+            val view : LinesJoinBendRightView = LinesJoinBendRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
