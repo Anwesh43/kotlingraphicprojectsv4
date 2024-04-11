@@ -183,4 +183,27 @@ class LineRightSeparateView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRightSeparateView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrs : LineRightSeparate = LineRightSeparate(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrs.draw(canvas, paint)
+            animator.animate {
+                lrs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
