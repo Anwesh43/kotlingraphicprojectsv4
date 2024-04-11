@@ -41,7 +41,7 @@ fun Canvas.drawLineRightSeparate(scale : Float, w : Float, h : Float, paint : Pa
     }
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
-            drawXY(-w * 0.5f * (1 - dsc(2)) * (1 - j), -h * 0.5f * (1 - dsc(3)) * j) {
+            drawXY(-w * 0.5f * dsc(2) * (1 - j), -h * 0.5f * dsc(3) * j) {
                 rotate(rot * dsc(1) * j)
                 drawLine(0f, 0f, -size * dsc(0), 0f, paint)
             }
@@ -101,7 +101,8 @@ class LineRightSeparateView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-
+                    Thread.sleep(delay)
+                    view.invalidate()
                 } catch(ex : Exception) {
 
                 }
