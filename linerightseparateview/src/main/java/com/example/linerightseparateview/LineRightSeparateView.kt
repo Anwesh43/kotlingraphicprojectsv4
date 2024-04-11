@@ -208,4 +208,12 @@ class LineRightSeparateView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineRightSeparateView {
+            val view : LineRightSeparateView = LineRightSeparateView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
