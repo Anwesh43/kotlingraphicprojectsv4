@@ -217,4 +217,12 @@ class AlternateArcLineBentView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : AlternateArcLineBentView {
+            val view : AlternateArcLineBentView = AlternateArcLineBentView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
