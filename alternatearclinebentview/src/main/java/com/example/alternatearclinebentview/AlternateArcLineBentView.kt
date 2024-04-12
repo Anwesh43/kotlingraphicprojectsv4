@@ -192,4 +192,27 @@ class AlternateArcLineBentView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : AlternateArcLineBentView) {
+
+        private val animator : Animator = Animator(view)
+        private val aalb : AlternateArcLineBent = AlternateArcLineBent(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            aalb.draw(canvas, paint)
+            animator.animate {
+                aalb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            aalb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
