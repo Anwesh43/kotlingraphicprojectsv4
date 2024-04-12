@@ -40,10 +40,10 @@ fun Canvas.drawAlternateArcLine(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         rotate(rot * dsc(2))
         drawArc(
-            RectF(-size / 2, -size / 2, size / 2, size / 2),
+            RectF(-size, -size, size, size),
             180f,
             180f * dsc(1),
             false,
