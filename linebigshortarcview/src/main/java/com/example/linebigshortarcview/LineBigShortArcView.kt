@@ -182,4 +182,26 @@ class LineBigShortArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBigShortArcView, private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)) {
+
+        private val animator : Animator = Animator(view)
+        private val lbs : LineBigShortArc = LineBigShortArc(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbs.draw(canvas, paint)
+            animator.animate {
+                lbs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
