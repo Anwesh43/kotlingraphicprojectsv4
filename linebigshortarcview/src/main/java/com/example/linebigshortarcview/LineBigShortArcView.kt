@@ -206,4 +206,13 @@ class LineBigShortArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBigShortArcView {
+            val view : LineBigShortArcView = LineBigShortArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
