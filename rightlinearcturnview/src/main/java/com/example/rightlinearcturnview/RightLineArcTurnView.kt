@@ -213,4 +213,13 @@ class RightLineArcTurnView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RightLineArcTurnView {
+            val view : RightLineArcTurnView = RightLineArcTurnView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
