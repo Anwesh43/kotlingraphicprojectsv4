@@ -51,15 +51,15 @@ fun Canvas.drawRightLineArcTurn(scale : Float, w : Float, h : Float, paint : Pai
             drawArc(RectF(-size / 2, 0f, size / 2, size), -rot, rot * dsc(2), false, paint)
         }
     }
+}
 
-    fun Canvas.drawRLATNode(i : Int, scale : Float, paint : Paint) {
-        val w : Float = width.toFloat()
-        val h : Float = height.toFloat()
-        paint.color = Color.parseColor(colors[i])
-        paint.strokeCap = Paint.Cap.ROUND
-        paint.strokeWidth = Math.min(w, h) / strokeFactor
-        drawRightLineArcTurn(scale, w, h, paint)
-    }
+fun Canvas.drawRLATNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawRightLineArcTurn(scale, w, h, paint)
 }
 
 class RightLineArcTurnView(ctx : Context) : View(ctx) {
@@ -122,6 +122,47 @@ class RightLineArcTurnView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class RLATNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : RLATNode? = null
+        private var prev : RLATNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = RLATNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawRLATNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : RLATNode {
+            var curr : RLATNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
