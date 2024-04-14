@@ -48,7 +48,7 @@ fun Canvas.drawRightLineArcTurn(scale : Float, w : Float, h : Float, paint : Pai
             }
         }
         drawXY(0f, size / 2) {
-            drawArc(RectF(-size / 2, 0f, size / 2, size), -rot, rot * dsc(2), false, paint)
+            drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -rot, rot * dsc(2), false, paint)
         }
     }
 }
@@ -59,6 +59,7 @@ fun Canvas.drawRLATNode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawRightLineArcTurn(scale, w, h, paint)
 }
 
