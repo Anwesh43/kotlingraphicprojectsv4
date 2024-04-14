@@ -48,7 +48,7 @@ fun Canvas.drawRightLineArcTurn(scale : Float, w : Float, h : Float, paint : Pai
             }
         }
         drawXY(0f, size / 2) {
-            drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -rot, rot * dsc(2), false, paint)
+            drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -rot, 2 * rot * dsc(2), false, paint)
         }
     }
 }
