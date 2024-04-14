@@ -188,4 +188,27 @@ class RightLineArcTurnView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineArcTurnView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val rlat : RightLineArcTurn = RightLineArcTurn(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlat.draw(canvas, paint)
+            animator.animate {
+                rlat.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlat.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
