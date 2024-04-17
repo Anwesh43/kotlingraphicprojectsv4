@@ -27,3 +27,35 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawArcRotLineRight(scale : Float, w : Float, h : Float, paint : Paint) {
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    val size : Float = Math.min(w, h) / sizeFactor
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(2))
+            drawLine(0f, 0f, -size * dsc(1), 0f, paint)
+        }
+        drawArc(RectF(0f, -size / 2, size, size / 2), 0f, 180f * dsc(0), false, paint)
+    }
+}
+
+fun Canvas.drawARLRNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
+    drawArcRotLineRight(scale, w, h, paint)
+}
+
