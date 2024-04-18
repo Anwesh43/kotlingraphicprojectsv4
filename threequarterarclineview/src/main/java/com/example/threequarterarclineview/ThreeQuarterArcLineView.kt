@@ -185,4 +185,27 @@ class ThreeQuarterArcLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ThreeQuarterArcLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val tqal : ThreeQuarterArcLine = ThreeQuarterArcLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tqal.draw(canvas, paint)
+            animator.animate {
+                tqal.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tqal.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
