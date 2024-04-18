@@ -210,4 +210,13 @@ class ThreeQuarterArcLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ThreeQuarterArcLineView {
+            val view : ThreeQuarterArcLineView = ThreeQuarterArcLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
