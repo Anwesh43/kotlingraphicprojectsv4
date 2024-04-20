@@ -213,4 +213,12 @@ class LineToRightArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineToRightArcView {
+            val view : LineToRightArcView = LineToRightArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
