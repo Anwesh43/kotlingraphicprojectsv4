@@ -48,7 +48,7 @@ fun Canvas.drawLineToRightArc(scale : Float, w : Float, h : Float, paint : Paint
                 drawLine(0f, 0f, 0f, size * 0.5f * dsc(0), paint)
             }
         }
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, rot * dsc(2), false, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, rot * dsc(1), false, paint)
     }
 }
 
