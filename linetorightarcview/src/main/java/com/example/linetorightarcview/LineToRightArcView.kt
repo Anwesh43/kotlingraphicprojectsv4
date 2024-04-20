@@ -133,7 +133,7 @@ class LineToRightArcView(ctx : Context) : View(ctx) {
         private var prev : LTRANode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
