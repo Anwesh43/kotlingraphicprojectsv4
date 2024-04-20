@@ -2,13 +2,13 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.threequarterarclineview.ThreeQuarterArcLineView
+import com.example.linetorightarcview.LineToRightArcView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        ThreeQuarterArcLineView.create(this)
+        LineToRightArcView.create(this)
     }
 }
