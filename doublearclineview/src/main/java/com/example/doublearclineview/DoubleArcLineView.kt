@@ -212,4 +212,12 @@ class DoubleArcLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : DoubleArcLineView {
+            val view : DoubleArcLineView = DoubleArcLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
