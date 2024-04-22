@@ -210,4 +210,13 @@ class RightLineArcLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : RightLineArcLeftView {
+            val view : RightLineArcLeftView = RightLineArcLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
