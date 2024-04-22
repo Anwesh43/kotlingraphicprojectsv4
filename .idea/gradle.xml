@@ -35,6 +35,7 @@
             <option value="$PROJECT_DIR$/boxdroptrirotview" />
             <option value="$PROJECT_DIR$/boxlinedroprightview" />
             <option value="$PROJECT_DIR$/crosslineintosingleview" />
+            <option value="$PROJECT_DIR$/doublearclineview" />
             <option value="$PROJECT_DIR$/halfarcfromleftview" />
             <option value="$PROJECT_DIR$/halfarclinedownview" />
             <option value="$PROJECT_DIR$/halfarclineleftview" />
@@ -110,6 +111,7 @@
             <option value="$PROJECT_DIR$/rightalternaterotview" />
             <option value="$PROJECT_DIR$/rightanglearccontainerview" />
             <option value="$PROJECT_DIR$/rightcircletosemiview" />
+            <option value="$PROJECT_DIR$/rightlinearcleftview" />
             <option value="$PROJECT_DIR$/rightlinearcrotdownview" />
             <option value="$PROJECT_DIR$/rightlinearcturnview" />
             <option value="$PROJECT_DIR$/rightlinesquareupview" />
