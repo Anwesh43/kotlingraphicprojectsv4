@@ -185,4 +185,27 @@ class ThreeQuarterLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ThreeQuarterLineRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val tql : ThreeQuarterLineRot = ThreeQuarterLineRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tql.draw(canvas, paint)
+            animator.animate {
+                tql.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tql.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
