@@ -210,4 +210,13 @@ class ThreeQuarterLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ThreeQuarterLineRotView {
+            val view : ThreeQuarterLineRotView = ThreeQuarterLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
