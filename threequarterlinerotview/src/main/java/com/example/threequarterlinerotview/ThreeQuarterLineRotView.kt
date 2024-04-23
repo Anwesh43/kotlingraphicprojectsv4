@@ -42,7 +42,7 @@ fun Canvas.drawThreeQuarterLineRot(scale : Float, w : Float, h : Float, paint : 
     }
     drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(3)) {
         rotate(rot * dsc(2))
-        drawXY(-size / 2, 0f) {
+        drawXY(size / 2, 0f) {
             drawLine(0f, 0f, -size * 0.5f * dsc(0), 0f, paint)
         }
         drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 270f * dsc(1), false, paint)
