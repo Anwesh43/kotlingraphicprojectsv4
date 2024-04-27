@@ -183,4 +183,27 @@ class ArcExpandShrinkView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcExpandShrinkView) {
+
+        private val animator : Animator = Animator(view)
+        private val aes : ArcExpandShrinkLine = ArcExpandShrinkLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            aes.draw(canvas, paint)
+            animator.animate {
+                aes.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            aes.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
