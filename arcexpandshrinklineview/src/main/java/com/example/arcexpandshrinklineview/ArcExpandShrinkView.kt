@@ -208,4 +208,13 @@ class ArcExpandShrinkView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ArcExpandShrinkView {
+            val view : ArcExpandShrinkView = ArcExpandShrinkView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
