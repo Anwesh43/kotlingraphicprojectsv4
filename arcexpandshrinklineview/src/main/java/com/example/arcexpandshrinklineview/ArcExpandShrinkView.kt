@@ -41,7 +41,7 @@ fun Canvas.drawArcExpandShrink(scale : Float, w : Float, h : Float, paint : Pain
         scale.divideScale(it, parts)
     }
     drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f * dsc(1), 180f * (2 * dsc(0) - dsc(1)), true, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f + 180f * dsc(1), 180f * (2 * dsc(0) - dsc(1)), true, paint)
         drawXY((w / 2) * (1 - dsc(2)), 0f) {
             drawLine(0f, 0f, size, 0f, paint)
         }
