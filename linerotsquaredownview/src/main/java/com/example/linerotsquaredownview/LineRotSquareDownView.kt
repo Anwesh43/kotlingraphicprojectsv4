@@ -40,12 +40,12 @@ fun Canvas.drawLineRotSquare(scale : Float, w : Float, h : Float, paint : Paint)
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h  * 0.5f * (1 - dsc(4))) {
+    drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(2))
             drawLine(0f, 0f, 0f, -size * dsc(0), paint)
         }
-        drawXY(0f, h * 0.5f * (1 - dsc(0))) {
+        drawXY(0f, h * 0.5f * (1 - dsc(1))) {
             drawRect(RectF(0f, 0f, size, size * (1 - dsc(3))), paint)
         }
     }
