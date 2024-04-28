@@ -186,4 +186,27 @@ class LineRotSquareDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotSquareDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrsd : LineRotSquareDown = LineRotSquareDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrsd.draw(canvas, paint)
+            animator.animate {
+                lrsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
