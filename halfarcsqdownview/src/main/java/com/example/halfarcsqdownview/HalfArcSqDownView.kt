@@ -184,4 +184,27 @@ class HalfArcSqDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcSqDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val hasd : HalfArcSqDown = HalfArcSqDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hasd.draw(canvas, paint)
+            animator.animate {
+                hasd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hasd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
