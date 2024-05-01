@@ -207,4 +207,12 @@ class PartialArcToHalfView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : PartialArcToHalfView {
+            val view : PartialArcToHalfView = PartialArcToHalfView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
