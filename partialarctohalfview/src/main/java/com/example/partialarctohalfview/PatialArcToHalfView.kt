@@ -182,4 +182,27 @@ class PartialArcToHalfView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : PartialArcToHalfView) {
+
+        private val path : PartialArcToHalf = PartialArcToHalf(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            path.draw(canvas, paint)
+            animator.animate {
+                path.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            path.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
