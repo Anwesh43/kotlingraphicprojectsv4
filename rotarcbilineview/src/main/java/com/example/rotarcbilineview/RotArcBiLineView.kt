@@ -211,4 +211,12 @@ class RotArcBiLineView(ctx : Context)  : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RotArcBiLineView {
+            val view : RotArcBiLineView = RotArcBiLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
