@@ -21,7 +21,7 @@ val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
-val bacKColor : Int = Color.parseColor("#BDBDBD")
+val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
@@ -184,6 +184,29 @@ class RotArcBiLineView(ctx : Context)  : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : RotArcBiLineView) {
+
+        private val rabl : RotArcBiLine = RotArcBiLine(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rabl.draw(canvas, paint)
+            animator.animate {
+                rabl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rabl.startUpdating {
+                animator.start()
+            }
         }
     }
 }
