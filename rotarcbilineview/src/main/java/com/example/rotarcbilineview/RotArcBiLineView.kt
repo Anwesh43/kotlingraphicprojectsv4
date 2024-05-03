@@ -41,11 +41,22 @@ fun Canvas.drawRotArcBiLine(scale : Float, w : Float, h : Float, paint : Paint) 
         scale.divideScale(it, parts)
     }
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
-        rotate(rot * dsc(1))
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, 180f * dsc(0), false, paint)
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(1))
+            drawArc(
+                RectF(-size / 2, -size / 2, size / 2, size / 2),
+                180f,
+                180f * dsc(0),
+                false,
+                paint
+            )
+        }
         for (j in 0..1) {
-            drawXY(0f, -h * 0.5f * (1f - 2 * j) * (1f - dsc(2))) {
-                drawLine(0f, 0f, 0f, -size, paint)
+            drawXY(0f, 0f) {
+                scale(1f, 1f - 2 * j)
+                drawXY(0f, h * 0.5f * (1f - dsc(2))) {
+                    drawLine(0f, 0f, 0f, size / 2, paint)
+                }
             }
         }
     }
@@ -57,6 +68,7 @@ fun Canvas.drawRABLNode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawRotArcBiLine(scale, w, h, paint)
 }
 
