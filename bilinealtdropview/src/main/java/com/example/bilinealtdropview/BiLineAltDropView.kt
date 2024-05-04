@@ -46,8 +46,8 @@ fun Canvas.drawBiLineAltDrop(scale : Float, w : Float, h : Float, paint : Paint)
                 drawXY(w * 0.5f * (1 - dsc(0)), 0f) {
                     drawLine(0f, 0f, size / 2, 0f, paint)
                 }
-                drawXY(0f, h * 0.5f * (1 - dsc(1))) {
-                    rotate(rot * dsc(1))
+                drawXY(size / 2, -h * 0.5f * (1 - dsc(1))) {
+                    rotate(rot * dsc(2))
                     drawLine(0f, 0f, 0f, -size / 2, paint)
                 }
             }
