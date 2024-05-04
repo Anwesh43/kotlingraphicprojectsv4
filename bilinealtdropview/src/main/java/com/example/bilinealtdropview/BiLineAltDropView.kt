@@ -215,4 +215,12 @@ class BiLineAltDropView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BiLineAltDropView {
+            val view : BiLineAltDropView = BiLineAltDropView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
