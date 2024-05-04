@@ -190,4 +190,27 @@ class BiLineAltDropView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineAltDropView) {
+
+        private val blad : BiLineAltDrop = BiLineAltDrop(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blad.draw(canvas, paint)
+            animator.animate {
+                blad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blad.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
