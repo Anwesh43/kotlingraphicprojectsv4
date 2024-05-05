@@ -211,4 +211,12 @@ class IrregularRotLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : IrregularRotLineView {
+            val view : IrregularRotLineView = IrregularRotLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
