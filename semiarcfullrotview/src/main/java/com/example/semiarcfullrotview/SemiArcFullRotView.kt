@@ -207,4 +207,13 @@ class SemiArcFullRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SemiArcFullRotView {
+            val view : SemiArcFullRotView = SemiArcFullRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
