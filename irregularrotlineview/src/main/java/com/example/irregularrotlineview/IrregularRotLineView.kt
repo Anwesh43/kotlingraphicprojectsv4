@@ -43,9 +43,10 @@ fun Canvas.drawIrrgularRotLine(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         rotate(rot * 2 * dsc(2))
         for (j in 0..1) {
+            val uSize : Float = size / (1f + (1f - j))
             drawXY(0f, 0f) {
                 rotate(-fixedDeg + rot * j)
-                drawLine(0f, -size * (1 - j) * (1 - dsc(0)), 0f, -size * (1 - j) -size * j * dsc(1), paint)
+                drawLine(0f, -uSize * (1 - j) * (1 - dsc(0)), 0f, -uSize * (1 - j) -uSize * j * dsc(1), paint)
             }
         }
     }
