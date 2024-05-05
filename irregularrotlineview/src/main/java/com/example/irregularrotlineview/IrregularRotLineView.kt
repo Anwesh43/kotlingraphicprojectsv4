@@ -186,4 +186,27 @@ class IrregularRotLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : IrregularRotLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val irl : IrregularRotLine = IrregularRotLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            irl.draw(canvas, paint)
+            animator.animate {
+                irl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            irl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
