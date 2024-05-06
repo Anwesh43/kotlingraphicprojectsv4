@@ -118,4 +118,45 @@ class QuarterRotHalfCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class QRHCNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : QRHCNode? = null
+        private var prev : QRHCNode? = null
+
+        init {
+
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = QRHCNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawQRHCNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : QRHCNode {
+            var curr : QRHCNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
