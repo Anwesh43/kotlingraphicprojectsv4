@@ -38,11 +38,11 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawQuarterRotHalfCircle(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
-        scale.divideScale(it, parts)
+        scale.divideScale(it, parts).divideScale(0, 2)
     }
     drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         rotate(rot * dsc(1))
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f, 90f * (dsc(0) + dsc(1)), false, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f, 90f * (dsc(0) + dsc(2)), false, paint)
     }
 }
 
