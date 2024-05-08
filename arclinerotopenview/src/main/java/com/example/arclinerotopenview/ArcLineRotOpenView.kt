@@ -213,4 +213,13 @@ class ArcLineRotOpenView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ArcLineRotOpenView {
+            val view : ArcLineRotOpenView = ArcLineRotOpenView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
