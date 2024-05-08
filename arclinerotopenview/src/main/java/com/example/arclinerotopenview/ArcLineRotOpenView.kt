@@ -188,4 +188,27 @@ class ArcLineRotOpenView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcLineRotOpenView) {
+
+        private val animator : Animator = Animator(view)
+        private val arlo : ArcLineRotOpen = ArcLineRotOpen(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            arlo.draw(canvas, paint)
+            animator.animate {
+                arlo.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            arlo.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
