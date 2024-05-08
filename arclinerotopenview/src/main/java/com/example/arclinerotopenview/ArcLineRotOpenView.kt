@@ -18,7 +18,7 @@ val colors : Array<String> = arrayOf(
 )
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val strokeFactor : Float = 4.9f
+val strokeFactor : Float = 90f
 val delay : Long = 20
 val rot : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -46,7 +46,7 @@ fun Canvas.drawArcLineRotOpen(scale : Float, w : Float, h : Float, paint : Paint
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 rotate(rot * dsc(2))
-                drawLine(0f, 0f, 0f, -size * dsc(1), paint)
+                drawLine(0f, 0f, 0f, -size * 0.5f * dsc(1), paint)
             }
         }
     }
