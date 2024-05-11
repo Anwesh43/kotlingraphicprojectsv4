@@ -212,4 +212,13 @@ class BiMirrorArcRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiMirrorArcRotView {
+            val view : BiMirrorArcRotView = BiMirrorArcRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
