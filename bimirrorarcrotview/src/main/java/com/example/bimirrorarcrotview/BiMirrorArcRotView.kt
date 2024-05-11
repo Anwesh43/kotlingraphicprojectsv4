@@ -187,4 +187,27 @@ class BiMirrorArcRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiMirrorArcRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val bmar : BiMirrorArcRot = BiMirrorArcRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bmar.draw(canvas, paint)
+            animator.animate {
+                bmar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bmar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
