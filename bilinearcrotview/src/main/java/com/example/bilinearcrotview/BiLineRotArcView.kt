@@ -22,6 +22,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
+val rot : Float = 45f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -39,10 +40,15 @@ fun Canvas.drawBiLineRotArc(scale : Float, w : Float, h : Float, paint : Paint) 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                scale(1f - 2 * j, 1f)
+                rotate(rot * dsc(2))
+                drawXY(0f, 0f) {
+                    drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                    drawArc(RectF(-size, -size, size, size), 0f, rot * dsc(1), false, paint)
+                }
             }
         }
     }
