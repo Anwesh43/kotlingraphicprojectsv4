@@ -185,4 +185,27 @@ class LineStepLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineStepLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val lslr : LineStepLineRight = LineStepLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lslr.draw(canvas, paint)
+            animator.animate {
+                lslr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lslr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
