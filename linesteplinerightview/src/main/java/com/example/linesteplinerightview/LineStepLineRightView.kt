@@ -28,3 +28,35 @@ val steps : Int = 3
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawLineStepLineRight(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
+        rotate(rot * dsc(2))
+        drawLine(0f, 0f, size * dsc(0), 0f, paint)
+        for (j in 0..(steps - 1)) {
+            drawXY((size / (steps - 1)) * j, -h * 0.5f * (1 - dsc(1))) {
+                drawLine(0f, 0f, 0f, -size, paint)
+            }
+        }
+    }
+}
+
+fun Canvas.drawLSLRNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = Color.parseColor(colors[i])
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineStepLineRight(scale, w, h, paint)
+}
