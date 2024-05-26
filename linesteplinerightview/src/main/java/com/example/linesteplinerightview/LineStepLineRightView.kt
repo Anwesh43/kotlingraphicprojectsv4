@@ -210,4 +210,13 @@ class LineStepLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineStepLineRightView {
+            val view : LineStepLineRightView = LineStepLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
