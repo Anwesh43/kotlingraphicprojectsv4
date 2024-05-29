@@ -216,4 +216,13 @@ class StepLineArcRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : StepLineArcRotView {
+            val view : StepLineArcRotView = StepLineArcRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
