@@ -191,4 +191,27 @@ class StepLineArcRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepLineArcRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val slar : StepLineArcRot = StepLineArcRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            slar.draw(canvas, paint)
+            animator.animate {
+                slar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            slar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
