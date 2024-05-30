@@ -42,11 +42,11 @@ fun Canvas.drawStepLineArcRot(scale : Float, w : Float, h : Float, paint : Paint
     }
     drawXY(w / 2, h / 2 - (h / 2) * dsc(3)) {
         rotate(rot * dsc(2))
-        drawLine(0f, 0f, 0f, size * 0.25f * dsc(0), paint)
+        drawLine(0f, size / 2, 0f, size / 2 + size * 0.25f * dsc(0), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(-size / 2, -size / 2) {
+                drawXY(-size / 2, 0f) {
                     drawLine(0f, 0f, 0f, size * 0.25f * dsc(0), paint)
                 }
                 drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f, 90f * dsc(1), false, paint)
