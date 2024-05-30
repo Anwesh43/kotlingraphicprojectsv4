@@ -132,7 +132,7 @@ class LineArcIntoRotView(ctx : Context) : View(ctx) {
         private var prev : LAIRNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
