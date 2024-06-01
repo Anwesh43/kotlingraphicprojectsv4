@@ -16,8 +16,8 @@ val colors : Array<String> = arrayOf(
     "#C51162",
     "#00C853"
 )
-val parts : Int = 5
-val scGap : Float = 0.04f / parts
+val parts : Int = 6
+val scGap : Float = 0.05f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val rot : Float = -90f
@@ -40,15 +40,15 @@ fun Canvas.drawLineBallHolderLeft(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2) * dsc(5), h / 2 ) {
         rotate(rot * dsc(3))
         drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         for (j in 0..1) {
-            drawXY(size / 2 - (size) * j, -h * 0.5f * (1 - dsc(j))) {
+            drawXY(size / 2 - (size) * j - (h / 2) * j * dsc(4), -h * 0.5f * (1 - dsc(j + 1))) {
                 if (j == 0) {
                     drawLine(0f, 0f, 0f, -size / 2, paint)
                 } else {
-                    drawCircle(0f, -size / 4, size / 4, paint)
+                    drawCircle(size / 4, -size / 4, size / 4, paint)
                 }
             }
         }
