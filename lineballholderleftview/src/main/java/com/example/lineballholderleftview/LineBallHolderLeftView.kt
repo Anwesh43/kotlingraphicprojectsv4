@@ -215,4 +215,13 @@ class LineBallHolderLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineBallHolderLeftView {
+            val view : LineBallHolderLeftView = LineBallHolderLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
