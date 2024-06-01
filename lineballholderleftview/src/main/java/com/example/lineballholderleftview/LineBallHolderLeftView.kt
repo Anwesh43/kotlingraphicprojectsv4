@@ -190,4 +190,27 @@ class LineBallHolderLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBallHolderLeftView) {
+
+        private val lbhl : LineBallHolderLeft = LineBallHolderLeft(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbhl.draw(canvas, paint)
+            animator.animate {
+                lbhl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbhl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
