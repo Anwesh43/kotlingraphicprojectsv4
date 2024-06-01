@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Paint
-import android.graphics.RectF
 import android.graphics.Canvas
 import android.graphics.Color
 
