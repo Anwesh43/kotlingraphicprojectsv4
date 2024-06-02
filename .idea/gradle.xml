@@ -4,9 +4,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -82,6 +81,7 @@
             <option value="$PROJECT_DIR$/linecentersemicircleview" />
             <option value="$PROJECT_DIR$/linecuplineextendview" />
             <option value="$PROJECT_DIR$/linedividebisectview" />
+            <option value="$PROJECT_DIR$/linedownarcleftview" />
             <option value="$PROJECT_DIR$/linedownrotsweepview" />
             <option value="$PROJECT_DIR$/linedroparleftview" />
             <option value="$PROJECT_DIR$/lineextendrotview" />
@@ -155,6 +155,7 @@
             <option value="$PROJECT_DIR$/trisqrotdownview" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
