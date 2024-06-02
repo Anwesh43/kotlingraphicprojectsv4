@@ -42,7 +42,7 @@ fun Canvas.drawLineDownArcLeft(scale : Float, w : Float, h : Float, paint : Pain
     }
     drawXY(w / 2 - (w / 2 + size + paint.strokeWidth) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
-        drawXY(size, h * 0.5f * (1 - dsc(0))) {
+        drawXY(size, -h * 0.5f * (1 - dsc(0))) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
         drawArc(RectF(0f, -size / 2, size, size / 2), 0f, 180f * dsc(1), false, paint)
@@ -55,6 +55,7 @@ fun Canvas.drawLDALNode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineDownArcLeft(scale, w, h, paint)
 }
 
