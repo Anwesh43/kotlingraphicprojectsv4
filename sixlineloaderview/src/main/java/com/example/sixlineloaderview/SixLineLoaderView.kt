@@ -64,7 +64,7 @@ fun Canvas.drawSLLNode(i : Int, scale : Float, paint : Paint) {
 
 class SixLineLoaderView(ctx : Context) : View(ctx) {
 
-    private val renderer : Renderer = Animator(this)
+    private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
         renderer.render(canvas)
@@ -211,6 +211,14 @@ class SixLineLoaderView(ctx : Context) : View(ctx) {
             sll.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity: Activity) : SixLineLoaderView {
+            val view : SixLineLoaderView = SixLineLoaderView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
