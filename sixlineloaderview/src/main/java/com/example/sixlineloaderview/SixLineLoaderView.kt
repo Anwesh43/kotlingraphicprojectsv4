@@ -64,14 +64,16 @@ fun Canvas.drawSLLNode(i : Int, scale : Float, paint : Paint) {
 
 class SixLineLoaderView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvs : Canvas) {
+    private val renderer : Renderer = Animator(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+            renderer.handleTap()
             }
         }
         return true
