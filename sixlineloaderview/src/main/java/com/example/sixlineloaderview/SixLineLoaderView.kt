@@ -188,4 +188,27 @@ class SixLineLoaderView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SixLineLoaderView) {
+
+        private val animator : Animator = Animator(view)
+        private val sll : SixLineLoader = SixLineLoader(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sll.draw(canvas, paint)
+            animator.animate {
+                sll.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sll.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
