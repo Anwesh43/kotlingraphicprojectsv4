@@ -43,8 +43,7 @@ fun Canvas.drawAltBiArcJoin(scale : Float, w : Float, h : Float, paint : Paint) 
     drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(4)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * dsc(2))
-                scale(1f - 2 * j, 1f)
+                rotate(rot * dsc(2) * (1 - 2 * j))
                 drawXY(-size / 2 + size * j, 0f) {
                     drawArc(
                         RectF(
@@ -57,7 +56,7 @@ fun Canvas.drawAltBiArcJoin(scale : Float, w : Float, h : Float, paint : Paint) 
                 }
             }
         }
-        drawXY(0f, -h * 0.5f * (1 - dsc(3))) {
+        drawXY(0f, h * 0.5f * (1 - dsc(3))) {
             drawLine(0f, 0f, 0f, size, paint)
         }
     }
