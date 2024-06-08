@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/altbiarcjoinview" />
             <option value="$PROJECT_DIR$/alternatearclinebentview" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/arcbreaklinerightview" />
