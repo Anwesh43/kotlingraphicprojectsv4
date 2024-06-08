@@ -224,4 +224,13 @@ class AltBiArcJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : AltBiArcJoinView {
+            val view : AltBiArcJoinView = AltBiArcJoinView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
