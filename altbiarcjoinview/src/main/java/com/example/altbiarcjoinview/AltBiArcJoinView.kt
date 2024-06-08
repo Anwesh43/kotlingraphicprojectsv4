@@ -63,7 +63,7 @@ fun Canvas.drawAltBiArcJoin(scale : Float, w : Float, h : Float, paint : Paint) 
     }
 }
 
-fun Canvas.drawABAJNode(scale : Float, i : Int, paint : Paint) {
+fun Canvas.drawABAJNode( i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = Color.parseColor(colors[i])
@@ -133,6 +133,47 @@ class AltBiArcJoinView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class ABAJNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : ABAJNode? = null
+        private var prev : ABAJNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = ABAJNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawABAJNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : ABAJNode {
+            var curr : ABAJNode? = prev
+            if (dir === 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
