@@ -72,3 +72,19 @@ fun Canvas.drawABAJNode(scale : Float, i : Int, paint : Paint) {
     paint.style = Paint.Style.STROKE
     drawAltBiArcJoin(scale, w, h, paint)
 }
+
+class AltBiArcJoinView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
