@@ -189,4 +189,27 @@ class RightLineArcDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineArcDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlad : RightLineArcDown = RightLineArcDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlad.draw(canvas, paint)
+            animator.animate {
+                rlad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlad.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
