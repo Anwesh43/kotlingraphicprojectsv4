@@ -41,7 +41,7 @@ fun Canvas.drawBentToLineArc(scale : Float, w : Float, h : Float, paint : Paint)
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + 2 * size) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawXY(0f, 0f) {
             rotate(deg)
@@ -57,6 +57,7 @@ fun Canvas.drawBTALNode(i : Int, scale : Float, paint : Paint) {
     paint.color = Color.parseColor(colors[i])
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBentToLineArc(scale, w, h, paint)
 }
 
