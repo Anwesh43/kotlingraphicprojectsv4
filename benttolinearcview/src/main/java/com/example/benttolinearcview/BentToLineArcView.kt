@@ -186,4 +186,27 @@ class BentToLineArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BentToLineArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val btla : BentToLineArc = BentToLineArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            btla.draw(canvas, paint)
+            animator.animate {
+                btla.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            btla.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
