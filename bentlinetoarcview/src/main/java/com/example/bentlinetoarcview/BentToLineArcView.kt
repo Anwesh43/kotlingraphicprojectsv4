@@ -23,7 +23,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 45f
-val deg : Float = -90f
+val deg : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -46,7 +46,7 @@ fun Canvas.drawBentToLineArc(scale : Float, w : Float, h : Float, paint : Paint)
             rotate(rot * (1 - dsc(1)) - deg * dsc(2))
             drawLine(0f, size * (1 - dsc(0)), 0f, size, paint)
         }
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f * (1 - dsc(2)), 90f * dsc(2), true, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), deg * (1 - dsc(2)), deg * dsc(2), true, paint)
     }
 }
 
