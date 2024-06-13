@@ -210,4 +210,12 @@ class BentToLineArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BentToLineArcView {
+            val view : BentToLineArcView = BentToLineArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
