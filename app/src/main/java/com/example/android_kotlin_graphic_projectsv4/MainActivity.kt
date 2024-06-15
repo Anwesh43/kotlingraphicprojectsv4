@@ -2,13 +2,13 @@ package com.example.android_kotlin_graphic_projectsv4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bentlinetoarcview.BentToLineArcView
+import com.example.partlineblockholderview.PartLineBlockHolderView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         //setContentView(R.layout.activity_main)
-        BentToLineArcView.create(this)
+        PartLineBlockHolderView.create(this)
     }
 }
