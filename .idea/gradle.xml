@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/bendlinetodownview" />
             <option value="$PROJECT_DIR$/bentarclinejoinview" />
             <option value="$PROJECT_DIR$/bentlineleftview" />
+            <option value="$PROJECT_DIR$/bentlinetoarcview" />
             <option value="$PROJECT_DIR$/benttolinearcview" />
             <option value="$PROJECT_DIR$/biarcbentlinerightview" />
             <option value="$PROJECT_DIR$/bihalfarjoindownview" />
@@ -125,6 +126,7 @@
             <option value="$PROJECT_DIR$/parallellinesemicircleview" />
             <option value="$PROJECT_DIR$/parallellinetoboxview" />
             <option value="$PROJECT_DIR$/partialarctohalfview" />
+            <option value="$PROJECT_DIR$/partlineblockholderview" />
             <option value="$PROJECT_DIR$/quarterrothalfcircleview" />
             <option value="$PROJECT_DIR$/rightalternaterotview" />
             <option value="$PROJECT_DIR$/rightanglearccontainerview" />
