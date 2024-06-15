@@ -40,11 +40,11 @@ fun Canvas.drawPartLineBlockHolder(scale : Float, w : Float, h : Float, paint : 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    val blockSize : Float = size / 10
+    val blockSize : Float = size / 4
     drawXY(w / 2 - (w / 2) * dsc(4), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(1))
-            drawLine(0f, 0f, size * dsc(1), 0f, paint)
+            drawLine(0f, 0f, size * dsc(0), 0f, paint)
         }
         for (j in 0..1) {
             drawXY((-size + blockSize) * (1 - j), -h * 0.5f * (1 - dsc(2 + j))) {
