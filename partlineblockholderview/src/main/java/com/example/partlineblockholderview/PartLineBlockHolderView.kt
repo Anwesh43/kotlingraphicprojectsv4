@@ -189,4 +189,27 @@ class PartLineBlockHolderView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : PartLineBlockHolderView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val plbh : PartLineBlockHolder = PartLineBlockHolder(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            plbh.draw(canvas, paint)
+            animator.animate {
+                plbh.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            plbh.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
