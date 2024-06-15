@@ -214,4 +214,13 @@ class PartLineBlockHolderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : PartLineBlockHolderView {
+            val view : PartLineBlockHolderView = PartLineBlockHolderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
